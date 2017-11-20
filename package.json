@@ -1,0 +1,9 @@
+{
+  "name": "secret-hitler",
+  "version": "0.0.1",
+  "description": "Eecs493 final project",
+  "dependencies": {
+    "express": "^4.15.2",
+    "socket.io": "^2.0.4"
+  }
+}

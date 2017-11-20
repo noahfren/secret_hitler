@@ -1,0 +1,78 @@
+~~~~~~~~~~~~~~~~~ BACK-END ~~~~~~~~~~~~~~~~~
+- Design:
+
+- Classes:
+
+- Player
+	- id (int)
+
+	- socket (Socket.Io socket type)
+
+	- name (string)
+
+	- client (string)
+
+	- party (bool)
+		- Liberal == true
+		- Fascist == false
+
+	- isHitler (bool)
+		- Hitler == true
+		- Not Hitler == false
+
+	- role (int)
+		- Nothing == 0
+		- President == 1
+		- Chancellor == 2
+		- Inelligible == 3 (for last rounds president and chancellor)
+
+	- game (*Game)
+
+	- METHODS
+	- isElligibleChancellor()
+		- return true if elligible to be nominated for Chancellor
+
+- Game
+	- id (int)
+		- unique game id, given to players to join game with
+
+	- players(array of players)
+		- player id == index of player in array
+
+	- policyDeck (Deck)
+		- deck object containing this games policy cards
+
+	- liberalPoliciesPlayed (int)
+		- count of liberal policy cards played
+
+	- fascistPoliciesPlayed (int)
+		- count of fascist policy cards played
+
+	- electionFailureCount (int)
+		- count of number of elections failed in a row
+
+	- president (*Player)
+		- pointer to player that is currently president
+
+	- chancellor (*Player)
+		- pointer to player tha is currently chancellor
+		- nil if no current chancellor elected
+
+	- round (int)
+		- Counts number of
+
+	- phase (int)
+		- New Game == 0
+		- Election == 1
+		- Legislative Session == 2
+		- Executive Action == 3
+		- Game Over == 4
+
+- Deck
+	- Deque of 17 policy cards (represented as booleans)
+		- 6 of 17 are Liberal Cards (bool == true)
+		- 11 of 17 are Fascist Cards (bool == false)
+
+	- Discard pile
+		- collects unused cards
+		- when deck is empty, contentes are shuffeled and placed in deck

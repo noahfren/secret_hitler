@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Secret Hitler!</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  </head>
+
+  <!-- Imported Scripts -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+  <!-- Client Side JS -->
+  <script type='text/javascript'> 
+    var socket = io();
+  </script>
+  <script src="scripts/start.js"></script>
+  <script src="scripts/game.js"></script>
+  
+  <body>
+    <div class="container" id="main-container">
+      <div class="row justify-content-center" id="viewport">
+
+        <!-- Start Screen -->
+        <div id="start-screen" class="col">
+          <div class="jumbotron" id="logo">
+            <h1>Secret Hitler</h1>
+          </div>
+
+          <!-- Initial Name Form -->
+          <div id="name-form">
+            <div id="name-form-group" class="form-group">
+              <label for="nameInputField">Enter Your Name</label>
+              <input class="form-control" id="nameInputField" aria-describedby="nameHelp">
+              <small id="nameHelp" class="form-text text-muted">Other players will use this to identify you.</small>
+            </div>
+            <button id="new-game-btn" onclick="newGameHandler()" class="btn btn-primary">New Game</button>
+            <button id="join-game-btn" onclick="joinGameHandler()" class="btn btn-secondary">Join Game</button>
+          </div>
+
+          <!-- Join Game Form -->
+          <div id="join-game-form" style="display: none">
+            <div id="join-game-form-group" class="form-group">
+              <label for="gameCodeInputField">Enter Your Game Code</label>
+              <input class="form-control" id="gameCodeInputField">
+            </div>
+            <button id="join-game-btn" onclick="joinGameSubmitHandler()" class="btn btn-primary">Join Game</button>
+          </div>
+
+          <!-- Create Game Form -->
+          <div id="create-game-form" style="display: none">
+            <h3>Your Code:</h3>
+            <h2 id="game-code"></h2>
+            <br>
+            <h5>Players Joined:</h5>
+            <h5 id="players-joined-counter">0</h5>
+            <br>
+            <button id="start-game-btn" class="btn btn-primary">Start Game</button>
+          </div>
+
+          <!-- Waiting Message -->
+          <div id="waiting-message" style="display: none">
+            <h3>Waiting for other players...</h3>
+          </div> 
+        </div>
+        <!-- End Start Screen -->
+
+      </div>
+    </div>
+  </body>
+</html>
