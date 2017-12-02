@@ -28,8 +28,8 @@
   
   <body>
     <!-- Start Screen -->
-    <div class="container" id="join-game-container">
-      <div id="start-screen">
+    <div class="container" id="join-game-container"  style="display: none">
+      <div id="start-screen" style="display: none">
         <div id="logo">
           <center><img id="hitler-logo" src="img/logo.png"></center>
         </div>
@@ -65,45 +65,39 @@
         </div>
 
         <!-- Waiting Message -->
-        <div id="waiting-message" style="display: none">
-          <center><h3>Waiting for other players...</h3>
+        <div id="waiting-message">
+          <h4>Waiting for other players...</h4>
         </div> 
       </div>
     </div>
     <!-- End Start Screen -->
 
     <!-- Game Screen -->
-    <div id="game-screen" class="container" style="display: none">
+    <div id="game-screen" class="container">
 
       <!-- Nav bar -->
-      <nav class="navbar">
-        <a class="navbar-brand" href="#">
-          <img src="img/logo.png" width="100" alt="Secret Hitler">
-        </a>
-      </nav>
+      <div class="row">
+        <img id="game-screen-logo" src="img/logo.png" alt="Secret Hitler">
+      </div>
 
       <!-- Player Info -->
       <div class="row">
-        <div class="col-lrg-3"></div>
-        <div id="player-info" class="col-lrg-6">
-          <h3>Player 1 is President</h3>
-          <h3>Player 2 is Chancellor</h3>
+        <div class="col-sm-3"></div>
+        <div id="player-info" class="col-sm-6">
+          <center><h3>Player 1 is President</h3></center>
+          <center><h3>Player 2 is Chancellor</h3></center>
         </div>
-        <div class="col-lrg-3"></div>
+        <div class="col-sm-3"></div>
       </div>
 
       <!-- Boards -->
       <div class="row">
-        <div class="col-lrg-2"></div>
-        <div id="boards" class="col-lrg-8">
-          <img id="fascist-board" src="img/fascist_board_color.png">
+        <div class="col-sm-2"></div>
+        <div id="boards" class="col-sm-8">
+          <img id="fascist-board" class="board-img" src="img/fascist_board_color.png">
+          <img id="liberal-board" class="board-img" src="img/liberal_board_color.png">
         </div>
-        <div class="col-lrg-2"></div>
-      </div>
-
-      <!-- Party Card -->
-      <div class="card" id="party-view" style="display: none">
-        <img class="card-img" src="img/liberal_card.png">
+        <div class="col-sm-2"></div>
       </div>
     </div>
     <!-- End Game Screen -->
