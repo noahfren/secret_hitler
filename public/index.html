@@ -24,54 +24,86 @@
   <script src="scripts/game.js"></script>
   
   <body>
-    <div class="container" id="main-container">
-      <div class="row justify-content-center" id="viewport">
-
-        <!-- Start Screen -->
-        <div id="start-screen" class="col">
-          <div class="jumbotron" id="logo">
-            <h1>Secret Hitler</h1>
-          </div>
-
-          <!-- Initial Name Form -->
-          <div id="name-form">
-            <div id="name-form-group" class="form-group">
-              <label for="nameInputField">Enter Your Name</label>
-              <input class="form-control" id="nameInputField" aria-describedby="nameHelp">
-              <small id="nameHelp" class="form-text text-muted">Other players will use this to identify you.</small>
-            </div>
-            <button id="new-game-btn" onclick="newGameHandler()" class="btn btn-primary">New Game</button>
-            <button id="join-game-btn" onclick="joinGameHandler()" class="btn btn-secondary">Join Game</button>
-          </div>
-
-          <!-- Join Game Form -->
-          <div id="join-game-form" style="display: none">
-            <div id="join-game-form-group" class="form-group">
-              <label for="gameCodeInputField">Enter Your Game Code</label>
-              <input class="form-control" id="gameCodeInputField">
-            </div>
-            <button id="join-game-btn" onclick="joinGameSubmitHandler()" class="btn btn-primary">Join Game</button>
-          </div>
-
-          <!-- Create Game Form -->
-          <div id="create-game-form" style="display: none">
-            <h3>Your Code:</h3>
-            <h2 id="game-code"></h2>
-            <br>
-            <h5>Players Joined:</h5>
-            <h5 id="players-joined-counter">0</h5>
-            <br>
-            <button id="start-game-btn" class="btn btn-primary">Start Game</button>
-          </div>
-
-          <!-- Waiting Message -->
-          <div id="waiting-message" style="display: none">
-            <h3>Waiting for other players...</h3>
-          </div> 
+    <!-- Start Screen -->
+    <div class="container" id="join-game-container">
+      <div id="start-screen">
+        <div class="jumbotron" id="logo">
+          <h1>Secret Hitler</h1>
         </div>
-        <!-- End Start Screen -->
 
+        <!-- Initial Name Form -->
+        <div id="name-form">
+          <div id="name-form-group" class="form-group">
+            <label for="nameInputField">Enter Your Name</label>
+            <input class="form-control" id="nameInputField" aria-describedby="nameHelp">
+            <small id="nameHelp" class="form-text text-muted">Other players will use this to identify you.</small>
+          </div>
+          <button id="new-game-btn" onclick="newGameHandler()" class="btn btn-primary">New Game</button>
+          <button id="join-game-btn" onclick="joinGameHandler()" class="btn btn-secondary">Join Game</button>
+        </div>
+
+        <!-- Join Game Form -->
+        <div id="join-game-form" style="display: none">
+          <div id="join-game-form-group" class="form-group">
+            <label for="gameCodeInputField">Enter Your Game Code</label>
+            <input class="form-control" id="gameCodeInputField">
+          </div>
+          <button id="join-game-btn" onclick="joinGameSubmitHandler()" class="btn btn-primary">Join Game</button>
+        </div>
+
+        <!-- Create Game Form -->
+        <div id="create-game-form" style="display: none">
+          <h3>Your Code:</h3>
+          <h2 id="game-code"></h2>
+          <br>
+          <h5>Players Joined:</h5>
+          <h5 id="players-joined-counter">0</h5>
+          <br>
+          <button id="start-game-btn" onclick="startNewGameHandler()" disabled="true" class="btn btn-primary">Start Game</button>
+        </div>
+
+        <!-- Waiting Message -->
+        <div id="waiting-message" style="display: none">
+          <h3>Waiting for other players...</h3>
+        </div> 
       </div>
     </div>
+    <!-- End Start Screen -->
+
+    <!-- Game Screen -->
+    <div id="game-screen" class="container" style="display: none">
+
+      <!-- Nav bar -->
+      <nav class="navbar">
+        <a class="navbar-brand" href="#">
+          <img src="img/logo.png" width="100" alt="Secret Hitler">
+        </a>
+      </nav>
+
+      <!-- Player Info -->
+      <div class="row">
+        <div class="col-lrg-3"></div>
+        <div id="player-info" class="col-lrg-6">
+          <h3>Player 1 is President</h3>
+          <h3>Player 2 is Chancellor</h3>
+        </div>
+        <div class="col-lrg-3"></div>
+      </div>
+
+      <!-- Boards -->
+      <div class="row">
+        <div class="col-lrg-2"></div>
+        <div id="boards" class="col-lrg-8">
+          <img id="fascist-board" src="img/fascist_board_color.png">
+        </div>
+        <div class="col-lrg-2"></div>
+      </div>
+
+      <!-- Party Card -->
+      <div class="card" id="party-view" style="display: none">
+        <img class="card-img" src="img/liberal_card.png">
+      </div>
+    </div>
+    <!-- End Game Screen -->
   </body>
 </html>

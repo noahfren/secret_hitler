@@ -6,30 +6,12 @@
 	// Discard pile
 		// collects unused cards
 		// when deck is empty, contentes are shuffeled and placed in deck
-
 const LIBERAL = 'LIBERAL';
 const FASCIST = 'FASCIST';
 const NUM_LIBERAL_CARDS = 6;
 const NUM_FASCIST_CARDS = 11;
 
-function shuffle(array) {
-  var currentIndex = array.length, temporaryValue, randomIndex;
-
-  // While there remain elements to shuffle...
-  while (0 !== currentIndex) {
-
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-
-    // And swap it with the current element.
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
-
-  return array;
-}
+var utils = require('../utils.js');
 
 module.exports = {
 	LIBERAL: LIBERAL,
@@ -41,7 +23,7 @@ module.exports = {
 		this.discard = [];
 
 		this.shuffle = function() {
-			this.draw = shuffle(this.draw);
+			this.draw = utils.shuffle(this.draw);
 		}
 
 		this.refresh = function() {

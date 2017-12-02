@@ -3,17 +3,19 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-var game = require('./game.js');
+var game = require('./model/game.js');
 
 var newGameMsg = 'newGame';
 var joinGameMsg = 'joinGame';
 var playerJoinedMsg = 'playerJoined';
 var gameReadyMsg = 'gameReady';
+var goToGameMsg = 'goToGame';
 
 var joinGameRespMsg = 'joinGameResp';
 
 var nameTakenErr = 'nameTaken';
 var invalidGameCodeErr = 'invalidGameCode';
+var tooManyPlayersErr = 'tooManyPlayers';
 
 app.use(express.static(__dirname + '/public'));
 
@@ -42,6 +44,12 @@ io.on('connection', function(socket){
 			return;
 		}
 		var curGame = games.get(msg.gameCode);
+		if (curGame.players.length >= 10) {
+			socket.emit(joinGameRespMsg, {
+				status: false,
+				err: tooManyPlayersErr
+			})
+		}
 		if (!curGame.addPlayer(msg.playerName, socket)) {
 			socket.emit(joinGameRespMsg, {
 				status: false,
@@ -53,7 +61,12 @@ io.on('connection', function(socket){
 		socket.emit(joinGameRespMsg, {
 			status: true
 		});
-		console.log(curGame.players.length);
+  	});
+
+  	socket.on(gameReadyMsg, function(msg){
+  		var curGame = games.get(msg.gameCode);
+  		socket.to(curGame.id).emit(goToGameMsg, {});
+  		curGame.startGame();
   	});
 });
 
