@@ -20,6 +20,14 @@ html * {
 }
 
 #join-game-btn {
-	background-color: #363636;
-	color: white;
+	font-family: 'Spectral SC', serif !important;
+	font-weight: bold;
+}
+
+#game-screen-logo {
+	width: 150px;
+	height: 113px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
 }
