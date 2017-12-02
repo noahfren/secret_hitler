@@ -15,3 +15,7 @@ html * {
 	width: 500px;
 }
 
+#start-game-btn {
+	background-color: #363636;
+	color: white;
+}
