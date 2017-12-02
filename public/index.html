@@ -35,7 +35,7 @@
         </div>
 
         <!-- Initial Name Form -->
-        <div id="name-form">
+        <div id="name-form" style="display: none">
           <div id="name-form-group" class="form-group">
             <label for="nameInputField">Enter Your Name</label>
             <input class="form-control" id="nameInputField" aria-describedby="nameHelp">
@@ -55,12 +55,11 @@
         </div>
 
         <!-- Create Game Form -->
-        <div id="create-game-form" style="display: none">
-          <h3>Your Code:</h3>
-          <h2 id="game-code"></h2>
+        <div id="create-game-form">
+          <center><h3>Your Game Code:</h3>
+          <center><h2 id="game-code"></h2>
           <br>
-          <h5>Players Joined:</h5>
-          <h5 id="players-joined-counter">0</h5>
+          <h5 id="players-joined-counter">Players Joined: 0</h5>
           <br>
           <button id="start-game-btn" onclick="startNewGameHandler()" disabled="true" class="btn btn-primary">Start Game</button>
         </div>
