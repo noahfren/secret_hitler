@@ -1,4 +1,4 @@
-body {
+html * {
 	font-family: 'Spectral SC', serif !important;
 	font-weight: bold;
 	color: #363636;
@@ -6,11 +6,18 @@ body {
 }
 
 #new-game-btn {
-	font-family: 'Spectral SC', serif !important;
-	font-weight: bold;
 	background-color: #363636;
 	color: white;
 
+}
+
+#hitler-logo {
+	width: 500px;
+}
+
+#start-game-btn {
+	background-color: #363636;
+	color: white;
 }
 
 #join-game-btn {

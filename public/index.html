@@ -31,7 +31,7 @@
     <div class="container" id="join-game-container"  style="display: none">
       <div id="start-screen">
         <div id="logo">
-          <center><img src="img/logo.png"></center>
+          <center><img id="hitler-logo" src="img/logo.png"></center>
         </div>
 
         <!-- Initial Name Form -->
@@ -48,7 +48,7 @@
         <!-- Join Game Form -->
         <div id="join-game-form" style="display: none">
           <div id="join-game-form-group" class="form-group">
-            <label for="gameCodeInputField">Enter Your Game Code</label>
+            <label for="gameCodeInputField">Enter Game Code</label>
             <input class="form-control" id="gameCodeInputField">
           </div>
           <button id="join-game-btn" onclick="joinGameSubmitHandler()" class="btn btn-primary">Join Game</button>
@@ -56,18 +56,17 @@
 
         <!-- Create Game Form -->
         <div id="create-game-form" style="display: none">
-          <h3>Your Code:</h3>
-          <h2 id="game-code"></h2>
+          <center><h3>Your Game Code:</h3>
+          <center><h2 id="game-code"></h2>
           <br>
-          <h5>Players Joined:</h5>
-          <h5 id="players-joined-counter">0</h5>
+          <h5 id="players-joined-counter">Players Joined: 0</h5>
           <br>
           <button id="start-game-btn" onclick="startNewGameHandler()" disabled="true" class="btn btn-primary">Start Game</button>
         </div>
 
         <!-- Waiting Message -->
-        <div id="waiting-message" style="display: none">
-          <h3>Waiting for other players...</h3>
+        <div id="waiting-message">
+          <h4>Waiting for other players...</h4>
         </div> 
       </div>
     </div>
@@ -100,7 +99,6 @@
         </div>
         <div class="col-sm-2"></div>
       </div>
-
     </div>
     <!-- End Game Screen -->
   </body>
