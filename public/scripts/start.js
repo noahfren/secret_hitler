@@ -24,7 +24,7 @@ $().ready(function () {
 
     socket.on(playerJoinedMsg, function(msg){
       playersJoined++;
-      $('#players-joined-counter').text(parseInt(playersJoined));
+      $('#players-joined-counter').text("Players Joined: " + parseInt(playersJoined));
       if (playersJoined >= 5) {
         $('#start-game-btn').removeAttr("disabled");
       };
