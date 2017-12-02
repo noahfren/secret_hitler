@@ -1,0 +1,19 @@
+body {
+	font-family: 'Spectral SC', serif !important;
+	font-weight: bold;
+	color: #363636;
+	background-color: #fdfdfd
+}
+
+#new-game-btn {
+	font-family: 'Spectral SC', serif !important;
+	font-weight: bold;
+	background-color: #363636;
+	color: white;
+
+}
+
+#join-game-btn {
+	font-family: 'Spectral SC', serif !important;
+	font-weight: bold;
+}
