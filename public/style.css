@@ -57,3 +57,25 @@ html * {
 #title_row {
 	padding-top: 15px;
 }
+
+#player-assignment{
+	position: fixed;
+	top: 30%;
+	left: 50%;
+	margin-left: -151.5px;
+	width: 303px;
+	height: 402px;
+}
+
+#hilter-card{
+	width: 303px;
+	height: 402px;
+}
+
+#remove-x{
+	position: absolute;
+	top: 0.5px;
+	right: 0.5px;
+	height: 20px;
+	width: 20px;
+}
