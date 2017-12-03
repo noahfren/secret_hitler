@@ -35,3 +35,25 @@ html * {
 .board-img {
 	width: 100%;
 }
+
+.vote_img {
+	-ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+    transform: rotate(90deg);
+    width: 75%;
+    /*height: 357px;
+    width: 250px;*/
+}
+
+#vote-card {
+	width: 700px;
+	position: fixed;
+	top: 30%;
+	left: 50%;
+	margin-left: -350px;
+
+}
+
+#title_row {
+	padding-top: 15px;
+}
