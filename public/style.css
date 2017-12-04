@@ -41,21 +41,41 @@ html * {
     -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
     transform: rotate(90deg);
     width: 75%;
+    border: solid;
     /*height: 357px;
     width: 250px;*/
 }
 
 #vote-card {
-	width: 700px;
+	width: 600px;
 	position: fixed;
-	top: 30%;
+	top: 33%;
 	left: 50%;
-	margin-left: -350px;
+	margin-left: -300px;
+	border: solid;
+}
 
+#select-player-card{
+	width: 500px;
+	height: 250px;
+	position: fixed;
+	top: 33%;
+	left: 50%;
+	margin-left: -250px;
+	border: solid;
+}
+
+#text-choice{
+	font-family: 'Spectral SC', serif !important;
+}
+
+#player-title{
+	padding-top: 30px;
+	padding-bottom: 15px;
 }
 
 #title_row {
-	padding-top: 15px;
+	padding-top: 30px;
 }
 
 #player-assignment{

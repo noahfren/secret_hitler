@@ -100,10 +100,11 @@
         <div class="col-sm-2"></div>
       </div>
 
-      <div class="card" id="vote-card">
+      <!-- Vote Card -->
+      <div class="card" id="vote-card" style="display: none">
         <div class="container">
           <div class="row justify-content-center" id="title_row">
-            <h4 class="card-title" id="elect_title">Elect Player as Chancellor?</h4>
+            <h3 class="card-title" id="elect_title">Elect Player as Chancellor?</h3>
           </div>
           <div class="row" id="vote_img_row">
             <div class="col-sm-1"></div>
@@ -117,10 +118,11 @@
           </div>
         </div>
       </div>
+
       <!-- Select Player Card -->
-      <div class="card">
-        <div class="container">
-          <div class="row justify-content-center">
+      <div class="card" id="select-player-card">
+        <div class="container" id="player-choice">
+          <div class="row justify-content-center" id="player-title">
             <h4>Select a Chancellor Nominee</h4>
           </div>
           <div class="row">
@@ -139,7 +141,8 @@
       </div>
     </div>
 
-    <div id="player-assignment" class="card">
+    <!-- Player Assignment Card -->
+    <div id="player-assignment" class="card" style="display: none">
       <img id="hilter-card" src="img/president_card.png">
       <img id="remove-x" src="img/cancel-button.png">
     </div>
