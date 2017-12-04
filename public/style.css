@@ -55,6 +55,29 @@ html * {
 	border: solid;
 }
 
+#policy-card{
+	width: 600px;
+	height: 300px;
+	position: fixed;
+	top: 33%;
+	left: 50%;
+	margin-left: -300px;
+	border: solid;
+}
+
+.policy_fascist_img{
+	-ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+    transform: rotate(90deg);
+    width: 93%;
+    border: solid;
+}
+
+.policy_liberal_img{
+	width: 65%;
+	border: solid;
+}
+
 #select-player-card{
 	width: 500px;
 	height: 250px;
@@ -63,10 +86,6 @@ html * {
 	left: 50%;
 	margin-left: -250px;
 	border: solid;
-}
-
-#text-choice{
-	font-family: 'Spectral SC', serif !important;
 }
 
 #player-title{
