@@ -37,11 +37,7 @@ html * {
 }
 
 .vote_img {
-	-ms-transform: rotate(90deg); /* IE 9 */
-    -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
-    transform: rotate(90deg);
-    width: 75%;
-    border: solid;
+	height: 250px;
     /*height: 357px;
     width: 250px;*/
 }
@@ -57,7 +53,7 @@ html * {
 
 #policy-card{
 	width: 600px;
-	height: 300px;
+	height: 325px;
 	position: fixed;
 	top: 33%;
 	left: 50%;
@@ -65,17 +61,24 @@ html * {
 	border: solid;
 }
 
-.policy_fascist_img{
-	-ms-transform: rotate(90deg); /* IE 9 */
-    -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
-    transform: rotate(90deg);
-    width: 93%;
-    border: solid;
+.policy_card_img{
+	width: 150px;
+	border: solid;
 }
 
-.policy_liberal_img{
-	width: 65%;
+#discard-policy-card{
+	width: 700px;
+	height: 325px;
 	border: solid;
+	position: fixed;
+	top: 33%;
+	left: 50%;
+	margin-left: -350px;
+}
+
+#column-spacing{
+	margin-left: 25px;
+	margin-right: 25px;
 }
 
 #select-player-card{
@@ -95,6 +98,7 @@ html * {
 
 #title_row {
 	padding-top: 30px;
+	padding-bottom: 5px;
 }
 
 #player-assignment{
