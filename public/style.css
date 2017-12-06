@@ -34,6 +34,7 @@ html * {
 
 .board-img {
 	width: 100%;
+	position: relative;
 }
 
 .vote_img {
@@ -121,4 +122,18 @@ html * {
 	right: 0.5px;
 	height: 20px;
 	width: 20px;
+}
+
+#lib-policy-card-1 {
+	position: absolute;
+	width: 90px;
+	top: 288px;
+	left: 122px;
+}
+
+#fas-policy-card-1 {
+	position: absolute;
+	width: 90px;
+	top: 54px;
+	left: 69px;
 }
