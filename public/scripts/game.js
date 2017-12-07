@@ -39,6 +39,24 @@ function hidePlayerAssignmentCard() {
 	partyViewDiv.hide();
 }
 
+function voteYes() {
+	
+}
+
+function voteNo() {
+
+}
+
+function discardPolicy(e) {
+	discard_index = parseInt(e.path[0].id.charAt(15))
+	console.log("discarding policy " + discard_index)
+}
+
+function selectPolicy(e) {
+	discard_index = parseInt(e.path[0].id.charAt(14))
+	console.log("discarding policy " + discard_index)
+}
+
 $().ready(function () {
 
 	partyViewDiv = $('#player-assignment');

@@ -28,7 +28,7 @@
   
   <body>
     <!-- Start Screen -->
-    <div class="container" id="join-game-container" >
+    <div class="container" id="join-game-container" style="display: none">
       <div id="start-screen">
         <div id="logo">
           <center><img id="hitler-logo" src="img/logo.png"></center>
@@ -73,7 +73,7 @@
     <!-- End Start Screen -->
 
     <!-- Game Screen -->
-    <div id="game-screen" class="container" style="display: none">
+    <div id="game-screen" class="container" >
 
       <!-- Nav bar -->
       <div class="row">
@@ -111,6 +111,22 @@
         <div class="col-sm-2"></div>
       </div>
 
+      <!-- Notification Card -->
+      <div id="notification" class="card" >
+        <div class="container">
+          <div class="row justify-content-center" id="title_row">
+            <h3 class="notification-title">Sample Notification Text Extra Long</h3>
+          </div>
+          <img id="notification-x" src="img/cancel-button.png" onclick="hideNotification()">
+        </div>
+      </div>
+
+      <!-- Player Assignment Card -->
+      <div id="player-assignment" class="card" style="display: none">
+        <img id="card-img" src="img/president_card.png">
+        <img id="remove-x" src="img/cancel-button.png" onclick="hidePlayerAssignmentCard()">
+      </div>
+
       <!-- Vote Card -->
       <div class="card" id="vote-card" style="display: none">
         <div class="container">
@@ -138,13 +154,13 @@
           </div>
           <div class="row" id="policy-card-row">
             <div class="col-sm-3" id="column-spacing">
-              <center><img class="policy_card_img" onclick="discardPolicy(event)" src="img/liberal_policy_card.png">
+              <center><img id="discard-policy-0" class="policy_card_img" onclick="discardPolicy(event)" src="img/liberal_policy_card.png">
             </div>
             <div class="col-sm-3" id="column-spacing">
-              <center><img class="policy_card_img" onclick="discardPolicy(event)" src="img/liberal_policy_card.png">
+              <center><img id="discard-policy-1" class="policy_card_img" onclick="discardPolicy(event)" src="img/liberal_policy_card.png">
             </div>
             <div class="col-sm-3" id="column-spacing">
-              <center><img class="policy_card_img" onclick="discardPolicy(event)" src="img/liberal_policy_card.png">
+              <center><img id="discard-policy-2" class="policy_card_img" onclick="discardPolicy(event)" src="img/liberal_policy_card.png">
             </div>
           </div>
         </div>
@@ -159,10 +175,10 @@
           <div class="row" id="vote_img_row">
             <div class="col-sm-1"></div>
             <div class="col-sm-5">
-              <center><img class="policy_card_img" onclick="selectPolicy(event)" src="img/liberal_policy_card.png">
+              <center><img id="select-policy-0" class="policy_card_img" onclick="selectPolicy(event)" src="img/liberal_policy_card.png">
             </div>
             <div class="col-sm-5">
-              <center><img class="policy_card_img" onclick="selectPolicy(event)" src="img/fascist_policy_card.png">
+              <center><img id="select-policy-1" class="policy_card_img" onclick="selectPolicy(event)" src="img/fascist_policy_card.png">
             </div>
           </div>
         </div>
@@ -188,12 +204,6 @@
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- Player Assignment Card -->
-    <div id="player-assignment" class="card" style="display: none">
-      <img id="card-img" src="img/president_card.png">
-      <img id="remove-x" src="img/cancel-button.png" onclick="hidePlayerAssignmentCard()">
     </div>
 
     <!-- End Game Screen -->
