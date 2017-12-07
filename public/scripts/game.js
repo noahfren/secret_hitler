@@ -64,7 +64,6 @@ function selectPolicy(e) {
 }
 
 function selectPlayer(e) {
-	console.log(playerDropdownDiv)
 	dropdown = $("#player-select-dropdown").find("option:selected").attr("data-value");
 	console.log(dropdown)
 }
@@ -76,7 +75,9 @@ $().ready(function () {
 	voteDiv = $('#vote-card');
 	discardDiv = $('#discard-policy-card');
 	selectDiv = $('#policy-card');
-	playerDropdownDiv = $("#select-player-card");
+	playerSelectDiv = $("#select-player-card");
+	dropdownHTML = $("#player-select-dropdown select");
+
 
 	// Set player info and display assignment card
 	socket.on(startInfoMsg, function(msg) {
@@ -102,7 +103,17 @@ $().ready(function () {
 			candidateName = msg.candidates[i].name; // Display this in selector
 			candidateId = msg.candidates[i].id; // Return this in response
 
-			// TODO: Add candidate selctions to selectDiv
+			// TODO: Add candidate selctions to dropdownHTML
+			dropdownHTML.empty();
+			for (var i = msg.candidates.length - 1; i >= 0; i--) {
+				id_num = msg.candidates[i].id;
+				player_name = msg.candidates[i].name;
+				dropdownHTML.append($('<option>', {
+				    value: id_num,
+				    text: player_name
+				}));
+			};
+
 		}
 	});
 
