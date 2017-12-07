@@ -171,7 +171,7 @@ module.exports = {
 				}
 			}
 			this.president.emit(nominationCandidateListMsg, {
-				candidates: candidates.slice();
+				candidates: candidates.slice()
 			});
 
 		}
@@ -262,7 +262,8 @@ module.exports = {
 			}
 			for (var i = 0; i < this.players.length; i++) {
 				this.players[i].emit(policyPlayedMsg, {
-					playedPolicy: playedPolicy
+					chancellor: this.chancellor.name,
+					policy: playedPolicy
 				});
 			}
 			// TODO: Check game over
@@ -293,6 +294,35 @@ module.exports = {
 
 		// TODO: this guy
 		this.electionsFailed = function () {
+			this.electionTracker = 0;
+			this.newRound();
+		}
+
+		// TODO
+		this.checkGameOver = function () {
+			if (this.chancellor.isHitler() && this.fascistPoliciesPlayed > 3) {
+				// GAME OVER
+			}
+			if (this.fascistPoliciesPlayed == 6) {
+				// GAME OVER
+			}
+			if (this.liberalPoliciesPlayed == 5) {
+				// GAME OVER
+			}
+		}
+
+		// TODO
+		this.policyPeek = function () {
+
+		}
+
+		// TODO
+		this.selectPlayerToKill = function () {
+
+		}
+
+		// TODO
+		this.killPlayer = function () {
 
 		}
 	}
