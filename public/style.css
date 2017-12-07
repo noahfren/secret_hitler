@@ -163,6 +163,14 @@ html * {
 	width: 20px;
 }
 
+#select-player-btn {
+	margin-top: 7%;
+}
+
+#player-title {
+	text-align: center;
+}
+
 .lib-policy-card {
 	position: absolute;
 	width: 11.75%;

@@ -63,6 +63,11 @@ function selectPolicy(e) {
 	selectDiv.hide();
 }
 
+function selectPlayer(e) {
+	dropdown = $("#player-select-dropdown").find("option:selected").attr("data-value");
+	console.log(dropdown)
+}
+
 $().ready(function () {
 
 	partyViewDiv = $('#player-assignment');
@@ -70,13 +75,16 @@ $().ready(function () {
 	voteDiv = $('#vote-card');
 	discardDiv = $('#discard-policy-card');
 	selectDiv = $('#policy-card');
+	playerSelectDiv = $("#select-player-card");
+	dropdownHTML = $("#player-select-dropdown select");
+
 
 	// Set player info and display assignment card
 	socket.on(startInfoMsg, function(msg) {
 		playerID = msg.id;
 		players = msg.players;
 		curPresident = msg.president;
-		roleImgFilepath = 'img/president_card.png'; // Weird filename, actually hitler card
+		roleImgFilepath = 'img/president_card.png'; // Weird filename, actually hitler card - should be fuhrer_card.png if anything
 		if (msg.role == FASCIST_ROLE) {
 			roleImgFilepath = 'img/fascist_card.png';
 			playerRole = FASCIST_ROLE;
@@ -95,7 +103,17 @@ $().ready(function () {
 			candidateName = msg.candidates[i].name; // Display this in selector
 			candidateId = msg.candidates[i].id; // Return this in response
 
-			// TODO: Add candidate selctions to selectDiv
+			// TODO: Add candidate selctions to dropdownHTML
+			dropdownHTML.empty();
+			for (var i = msg.candidates.length - 1; i >= 0; i--) {
+				id_num = msg.candidates[i].id;
+				player_name = msg.candidates[i].name;
+				dropdownHTML.append($('<option>', {
+				    value: id_num,
+				    text: player_name
+				}));
+			};
+
 		}
 	});
 
