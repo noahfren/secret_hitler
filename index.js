@@ -16,7 +16,7 @@ var playerJoinedMsg = 'playerJoined';
 var gameReadyMsg = 'gameReady';
 var goToGameMsg = 'goToGame';
 
-// Socket IO message names
+// Socket IO game message names
 const startInfoMsg = "startInfo";
 const nominationCandidateListMsg = "nominationCandidateList";
 const chancellorVoteMsg = "chancellorVote";
@@ -28,6 +28,12 @@ const newRoundMsg = "newRound";
 
 // Socket IO player response names
 var joinGameRespMsg = 'joinGameResp';
+
+// Socket IO game response names
+const nominationCandidateListRespMsg = "nominationCandidateListResp";
+const chancellorVoteRespMsg = "chancellorVoteResp";
+const presidentPolicyHandRespMsg = "presidentPolicyHandResp";
+const chancellorPolicyHandRespMsg = "chancellorPolicyHandResp";
 
 var nameTakenErr = 'nameTaken';
 var invalidGameCodeErr = 'invalidGameCode';
@@ -83,6 +89,26 @@ io.on('connection', function(socket){
   		var curGame = games.get(msg.gameCode);
   		socket.to(curGame.id).emit(goToGameMsg, {});
   		curGame.startGame();
+  	});
+
+  	socket.on(nominationCandidateListRespMsg, function(msg) {
+  		var curGame = games.get(msg.gameCode);
+  		curGame.nominateChancellor(msg.nomineeIndex);
+  	});
+
+  	socket.on(chancellorVoteRespMsg, function(msg) {
+  		var curGame = games.get(msg.gameCode);
+  		curGame.tallyVote(msg.playerId, msg.vote);
+  	});
+
+  	socket.on(presidentPolicyHandRespMsg, function(msg) {
+  		var curGame = games.get(msg.gameCode);
+  		curGame.sendChancellorHand(msg.discardIndex);
+  	});
+
+  	socket.on(chancellorPolicyHandRespMsg, function(msg) {
+  		var curGame = games.get(msg.gameCode);
+  		curGame.playPolicy(msg.selectedIndex);
   	});
 });
 

@@ -28,7 +28,7 @@
   
   <body>
     <!-- Start Screen -->
-    <div class="container" id="join-game-container" style="display: none">
+    <div class="container" id="join-game-container">
       <div id="start-screen">
         <div id="logo">
           <center><img id="hitler-logo" src="img/logo.png"></center>
@@ -73,7 +73,7 @@
     <!-- End Start Screen -->
 
     <!-- Game Screen -->
-    <div id="game-screen" class="container" >
+    <div id="game-screen" class="container" style="display: none">
 
       <!-- Nav bar -->
       <div class="row">
@@ -84,8 +84,8 @@
       <div class="row">
         <div class="col-sm-3"></div>
         <div id="player-info" class="col-sm-6">
-          <center><h3>Player 1 is President</h3></center>
-          <center><h3>Player 2 is Chancellor</h3></center>
+          <center><h3 id="president-info"></h3></center>
+          <center><h3 id="chancellor-info"></h3></center>
         </div>
         <div class="col-sm-3"></div>
       </div>
@@ -115,7 +115,7 @@
       <div id="notification" class="card" style="display: none">
         <div class="container">
           <div class="row justify-content-center" id="title_row">
-            <h3 class="notification-title">Sample Notification Text Extra Long</h3>
+            <h3 id="notification-title">Sample Notification Text Extra Long</h3>
           </div>
           <img id="notification-x" src="img/cancel-button.png" onclick="hideNotification()">
         </div>
@@ -167,7 +167,7 @@
       </div>
 
       <!-- Policy Card -->
-      <div class="card" id="policy-card" >
+      <div class="card" id="policy-card" style="display: none">
         <div class="container">
           <div class="row justify-content-center" id="title_row">
             <h3 class="card-title" id="elect_title">Choose a Policy to Play</h3>
@@ -194,16 +194,12 @@
             <div class="col-sm-2"></div>
             <div class="col-sm-8">
               <select id="player-select-dropdown" class="form-control form-control-lg">
-                <option data-value="1">Player 1</option>
-                <option data-value="2">Player 2</option>
-                <option data-value="3">Player 3</option>
-                <option data-value="4">Player 4</option>
               </select>
             </div>
             <div class="col-sm-2"></div>
           </div>
           <div class="row justify-content-center">
-            <button id="select-player-btn" onclick="selectPlayer(event)" class="btn btn-primary">Submit Nominee</button>
+            <button id="select-player-btn" onclick="selectPlayer()" class="btn btn-primary">Submit Nominee</button>
           </div>
         </div>
       </div>

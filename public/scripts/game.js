@@ -8,6 +8,12 @@ const chancellorPolicyHandMsg = "chancellorPolicyHand";
 const policyPlayedMsg = "policyPlayed";
 const newRoundMsg = "newRound";
 
+// Socket IO response names
+const nominationCandidateListRespMsg = "nominationCandidateListResp";
+const chancellorVoteRespMsg = "chancellorVoteResp";
+const presidentPolicyHandRespMsg = "presidentPolicyHandResp";
+const chancellorPolicyHandRespMsg = "chancellorPolicyHandResp";
+
 // Card Val Consts
 const LIBERAL = 'LIBERAL';
 const FASCIST = 'FASCIST';
@@ -25,7 +31,7 @@ const HITLER_ROLE = 2;
 
 var partyViewDiv = {};
 
-var POPUP_TIMEOUT = 10 * 1000;
+var POPUP_TIMEOUT = 5 * 1000;
 
 var playerID = 0;
 var playerRole = HITLER_ROLE;
@@ -37,65 +43,121 @@ var curChancellor = 0;
 var lib_policies = 0;
 var fas_policies = 0;
 
+var is_execution = false;
+var is_president = false;
+var is_chancellor = false;
+
+var displayQueue = [];
+
+function sendVote(vote) {
+	socket.emit(chancellorVoteRespMsg, {
+		gameCode: gameCode,
+		playerId: playerID,
+		vote: vote
+	});
+}
+
+function delayDisplay(div) {
+	if(notificationDiv.is(':visible') || partyViewDiv.is(':visible')) {
+		displayQueue.push(div);
+	}
+	else {
+		div.show();
+	}
+}
+
+function displayNext() {
+	if (displayQueue.length > 0) {
+		displayQueue[0].show();
+		displayQueue = displayQueue.slice(1);
+	}
+}
+
 function hidePlayerAssignmentCard() {
 	partyViewDiv.hide();
+	displayNext();
 }
 
 function hideNotification() {
 	notificationDiv.hide();
+	displayNext();
 }
 
 function voteYes() {
 	voteDiv.hide();
+	sendVote(true);
 }
 
 function voteNo() {
 	voteDiv.hide();
+	sendVote(false);
 }
 
 function discardPolicy(e) {
-	discard_index = parseInt(e.path[0].id.charAt(15))
-	console.log("discarding policy " + discard_index)
+	discard_index = parseInt(e.path[0].id.charAt(15));
 	discardDiv.hide();
+	socket.emit(presidentPolicyHandRespMsg,{
+		gameCode: gameCode,
+		discardIndex: discard_index
+	});
+
 }
 
 function selectPolicy(e) {
-	discard_index = parseInt(e.path[0].id.charAt(14))
-	console.log("discarding policy " + discard_index)
+	selected_index = parseInt(e.path[0].id.charAt(14));
 	selectDiv.hide();
+	socket.emit(chancellorPolicyHandRespMsg, {
+		gameCode: gameCode,
+		selectedIndex: selected_index
+	});
 }
 
-function selectPlayer(e) {
-	dropdown = $("#player-select-dropdown").find("option:selected").attr("data-value");
-	console.log(dropdown)
+function selectPlayer() {
+	playerSelectDiv.hide();
+	selected_player = $("#player-select-dropdown").find("option:selected").attr("data-value");
+	console.log(selected_player);
+	if (is_execution) {
+		is_execution = false;
+		// TODO: Execution choice response
+	}
+	else {
+		socket.emit(nominationCandidateListRespMsg, {
+			gameCode: gameCode,
+			nomineeIndex: selected_player
+		});
+	}
 }
 
 function notificationHelper(text) {
-	notificationText.html(text);
+	notificationText.text(text);
+	notificationDiv.show();
 }
+
 
 $().ready(function () {
 
+	presidentInfo = $("#president-info");
+	chancellorInfo = $('#chancellor-info');
 	partyViewDiv = $('#player-assignment');
 	notificationDiv = $('#notification');
-	notificationText = $('#notification-title h3');
+	notificationText = $('#notification-title');
 	voteDiv = $('#vote-card');
 	discardDiv = $('#discard-policy-card');
 	selectDiv = $('#policy-card');
 	playerSelectDiv = $("#select-player-card");
-	dropdownHTML = $("#player-select-dropdown select");
-	presidentHand0 = $("discard-policy-0");
-	presidentHand1 = $("discard-policy-1");
-	presidentHand2 = $("discard-policy-2");
-	chancellorHand0 = $("select-policy-0");
-	chancellorHand1 = $("select-policy-1");
+	dropdownHTML = $("#player-select-dropdown");
+	presidentHand0 = $("#discard-policy-0");
+	presidentHand1 = $("#discard-policy-1");
+	presidentHand2 = $("#discard-policy-2");
+	chancellorHand0 = $("#select-policy-0");
+	chancellorHand1 = $("#select-policy-1");
 
 
 	// Set player info and display assignment card
 	socket.on(startInfoMsg, function(msg) {
 		playerID = msg.id;
 		players = msg.players;
-		curPresident = msg.president;
+
 		roleImgFilepath = 'img/president_card.png'; // Weird filename, actually hitler card - should be fuhrer_card.png if anything
 		if (msg.role == FASCIST_ROLE) {
 			roleImgFilepath = 'img/fascist_card.png';
@@ -109,27 +171,32 @@ $().ready(function () {
 		partyViewDiv.show();
 	});
 
+	// Set up round
+	socket.on(newRoundMsg, function(msg) {
+		presidentInfo.text("President: " + msg.presidentName);
+		if (msg.presidentId == playerID) {
+			is_president = true;
+		}
+		is_chancellor = false;
+	});
+
 	// President must choose chancellor nominee
 	socket.on(nominationCandidateListMsg, function(msg) {
+		console.log(msg);
+		dropdownHTML.empty();
 		for (var i = 0; i < msg.candidates.length; i++) {
 			candidateName = msg.candidates[i].name; // Display this in selector
 			candidateId = msg.candidates[i].id; // Return this in response
-
-			// TODO: Add candidate selctions to dropdownHTML
-			dropdownHTML.empty();
-			for (var i = msg.candidates.length - 1; i >= 0; i--) {
-				id_num = msg.candidates[i].id;
-				player_name = msg.candidates[i].name;
-				dropdownHTML.append($('<option>', {
-				    value: id_num,
-				    text: player_name
-				}));
-			};
-
+			dropdownHTML.append(
+				$('<option></option>')
+					.attr("data-value",candidateId)
+					.text(candidateName)
+			);
 		}
+		delayDisplay(playerSelectDiv);
 	});
 
-	socket.on(presidentPolicyHandMsg, function(msg)) {
+	socket.on(presidentPolicyHandMsg, function(msg) {
 		if(msg.hand[0] == LIBERAL) {
 			presidentHand0.attr("src","img/liberal_policy_card.png");
 		}
@@ -150,9 +217,10 @@ $().ready(function () {
 		else {
 			presidentHand2.attr("src","img/fascist_policy_card.png");
 		}
-	}
+		delayDisplay(discardDiv);
+	});
 
-	socket.on(chancellorPolicyHandMsg, function(msg)) {
+	socket.on(chancellorPolicyHandMsg, function(msg) {
 		if(msg.hand[0] == LIBERAL) {
 			chancellorHand0.attr("src","img/liberal_policy_card.png");
 		}
@@ -166,14 +234,21 @@ $().ready(function () {
 		else {
 			chancellorHand1.attr("src","img/fascist_policy_card.png");
 		}
-	}
+		delayDisplay(selectDiv);
+	});
 
-	socket.on(chancellorSelectedMsg, function(msg)) {
-		notificationHelper(msg.chancellor + " has been elected Chancellor!");
-	}
+	socket.on(chancellorSelectedMsg, function(msg) {
+		console.log("Chancellor selected!");
+		notificationHelper(msg.chancellorName + " has been elected Chancellor!");
+		chancellorInfo.text("Chancellor: " + msg.chancellorName);
+		if (msg.chancellorId == playerID) {
+			is_chancellor = true;
+		}
+	});
 
-	socket.on(policyPlayedMsg, function(msg)) {
-		notificationHelper(msg.chancellor + " has enacted a " + msg.policy + " POLICY")
+	socket.on(policyPlayedMsg, function(msg) {
+		console.log("Policy played!");
+		notificationHelper(msg.chancellor + " has enacted a " + msg.policy + " POLICY");
 		if(msg.policy == LIBERAL)
 		{
 			$('#lib-policy-card-' + lib_policies).show();
@@ -183,12 +258,13 @@ $().ready(function () {
 			$('#fas-policy-card-' + fas_policies).show();
 			fas_policies++;
 		}
-	}
+	});
 
 	// Player votes on chancellor nomination
 	socket.on(chancellorVoteMsg, function(msg) {
-		// TODO: Change text to say who player is voting for
-		voteDiv.show();
+		console.log("REcieved vote msg for " + msg.chancellorName);
+		$('#elect_title').text("Elect " + msg.chancellorName +" as Chancellor?");
+		delayDisplay(voteDiv);
 	});
 
 });

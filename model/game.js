@@ -137,7 +137,6 @@ module.exports = {
 
 		this.selectFirstPresident = function () {
 			var n = Math.floor(this.players.length * Math.random());
-			this.players[n].makePresident();
 			this.president = this.players[n];
 		}
 
@@ -193,6 +192,8 @@ module.exports = {
 
 		this.tallyVote = function (playerId, vote) {
 			this.votes[playerId] = vote;
+			this.numVotes += 1;
+			console.log(playerId + " voted " + vote);
 			if (this.numVotes == this.players.length) {
 				var numYes = 0;
 				var numNo = 0;
@@ -221,15 +222,18 @@ module.exports = {
 
 		// If election is successful set new chancellor
 		this.electChancellor = function () {
+			console.log("Chancellor elected: " + this.nominee.name);
 			this.electionTracker = 0;
 			this.chancellor = this.nominee;
 			this.chancellor.makeChancellor();
 			// TODO : check game over
-			for (var i = 0; 9 < this.players.length; i++) {
+			for (var i = 0; i < this.players.length; i++) {
 				this.players[i].emit(chancellorSelectedMsg, {
-					chancellor: this.chancellor.name
+					chancellorName: this.chancellor.name,
+					chancellorId: this.chancellor.id
 				});
 			}
+			this.sendPresidentHand();
 		}
 
 		// Send president policy cards so they can discard one
@@ -242,6 +246,7 @@ module.exports = {
 
 		// Discard president choice and send Chancellor policy cards to play
 		this.sendChancellorHand = function (discardedPolicyIndex) {
+			console.log("President discarded policy " + discardedPolicyIndex);
 			this.deck.discardUnused(this.hand[discardedPolicyIndex]);
 			this.hand = this.hand.splice(discardedPolicyIndex, 1);
 			this.chancellor.emit(chancellorPolicyHandMsg, {
@@ -250,6 +255,7 @@ module.exports = {
 		}
 
 		this.playPolicy = function (playedPolicyIndex) {
+			console.log('Chancellor played policy ' + playedPolicyIndex);
 			var playedPolicy = this.hand[playedPolicyIndex];
 			this.hand = this.hand.splice(playedPolicyIndex, 1);
 			this.deck.discardUnused(this.hand[0]);
@@ -280,12 +286,13 @@ module.exports = {
 					this.players[i],position == NO_POSITION;
 				}
 			}
-			this.president = this.president.id + 1;
+			this.president = this.players[(this.president.id + 1) % this.players.length];
 			this.president.makePresident();
 			for (var i =0; i < this.players.length; i++) {
 				this.players[i].emit(newRoundMsg, {
 					round: this.round,
-					president: this.president.id,
+					presidentName: this.president.name,
+					presidentId: this.president.id,
 					electionTracker: this.electionTracker
 				});
 			}

@@ -46,6 +46,7 @@ module.exports = {
 		this.id = id_in;
 		this.name = name_in;
 		this.socket = socket_in;
+		this.position = NO_POSITION;
 
 		this.isElligibleChancellor = function () {
 			return this.position == NO_POSITION;
