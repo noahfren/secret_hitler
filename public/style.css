@@ -49,6 +49,7 @@ html * {
 	width: 40%;
 	left: 29.7%;
 	padding-bottom: 20px;
+	border: solid;
 }
 
 .notification-title {
@@ -145,6 +146,7 @@ html * {
 	position: absolute;
 	top: 30%;
 	left: 37.4%;
+	border: solid;
 	/*margin-left: -151.5px;*/
 	width: 25%;
 	/*height: 402px;*/
