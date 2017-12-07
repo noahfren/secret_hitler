@@ -122,15 +122,15 @@ module.exports = {
 		}
 
 		this.sendStartInfo = function () {
-			var players = [];
+			var playerNames = [];
 			for (var i = 0; i < this.players.length; i++) {
 				players.push(this.players.name);
 			}
 			for (var i = 0; i < this.players.length; i++) {
 				this.players[i].emit(startInfoMsg, {
-					party: this.players[i].party,
+					id: i,
 					role: this.players[i].role,
-					players: players,
+					players: playerNames,
 					president: this.president.id
 				});
 			}

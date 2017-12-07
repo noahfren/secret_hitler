@@ -16,6 +16,8 @@ var tooManyPlayersErr = 'tooManyPlayers';
 
 var playersJoined = 0;
 
+const MIN_PLAYERS = 3;
+
 $().ready(function () {
     enterNameDiv = $('#name-form');
     joinGameDiv = $('#join-game-form');
@@ -25,7 +27,7 @@ $().ready(function () {
     socket.on(playerJoinedMsg, function(msg){
       playersJoined++;
       $('#players-joined-counter').text("Players Joined: " + parseInt(playersJoined));
-      if (playersJoined >= 5) {
+      if (playersJoined >= MIN_PLAYERS) {
         $('#start-game-btn').removeAttr("disabled");
       };
     });

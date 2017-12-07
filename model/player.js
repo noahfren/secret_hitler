@@ -46,7 +46,6 @@ module.exports = {
 		this.id = id_in;
 		this.name = name_in;
 		this.socket = socket_in;
-		this.isHitler = false;
 
 		this.isElligibleChancellor = function () {
 			return this.position == NO_POSITION;
@@ -66,12 +65,13 @@ module.exports = {
 
 		this.assignRole = function (role_in) {
 			if (role_in == LIBERAL_ROLE) {
-				this.party = LIBERAL_ROLE;
-			} else {
-				this.party = FASCIST_ROLE;
-				if (role_in == HITLER_ROLE) {
-					this.isHitler = true;
-				}
+				this.role = LIBERAL_ROLE;
+			} 
+			else if (role_in == HITLER_ROLE) {
+				this.role = HITLER_ROLE;
+			}
+			else {
+				this.role = FASCIST_ROLE;
 			}
 		}
 

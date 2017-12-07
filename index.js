@@ -1,7 +1,11 @@
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
-var io = require('socket.io')(http);
+var io = require('socket.io')(http,{
+  'reconnection': true,
+  'reconnectionDelay': 500,
+  'reconnectionAttempts': 10
+});
 
 var game = require('./model/game.js');
 

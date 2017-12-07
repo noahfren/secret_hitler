@@ -28,8 +28,8 @@
   
   <body>
     <!-- Start Screen -->
-    <div class="container" id="join-game-container"  style="display: none">
-      <div id="start-screen" style="display: none">
+    <div class="container" id="join-game-container" >
+      <div id="start-screen">
         <div id="logo">
           <center><img id="hitler-logo" src="img/logo.png"></center>
         </div>
@@ -65,7 +65,7 @@
         </div>
 
         <!-- Waiting Message -->
-        <div id="waiting-message">
+        <div id="waiting-message" style="display: none">
           <h4>Waiting for other players...</h4>
         </div> 
       </div>
@@ -73,7 +73,7 @@
     <!-- End Start Screen -->
 
     <!-- Game Screen -->
-    <div id="game-screen" class="container">
+    <div id="game-screen" class="container" style="display: none">
 
       <!-- Nav bar -->
       <div class="row">
@@ -119,8 +119,8 @@
         </div>
       </div>
 
-            <!-- Vote Card -->
-      <div class="card" id="discard-policy-card">
+      <!-- Discard Policy Card -->
+      <div class="card" id="discard-policy-card" style="display: none">
         <div class="container">
           <div class="row justify-content-center" id="title_row">
             <h3 class="card-title" id="elect_title">Choose a Policy to Discard</h3>
@@ -181,8 +181,8 @@
 
     <!-- Player Assignment Card -->
     <div id="player-assignment" class="card" style="display: none">
-      <img id="hilter-card" src="img/president_card.png">
-      <img id="remove-x" src="img/cancel-button.png">
+      <img id="card-img" src="img/president_card.png">
+      <img id="remove-x" src="img/cancel-button.png" onclick="hidePlayerAssignmentCard()">
     </div>
 
     <!-- End Game Screen -->
