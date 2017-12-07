@@ -39,27 +39,37 @@ function hidePlayerAssignmentCard() {
 	partyViewDiv.hide();
 }
 
+function hideNotification() {
+	notificationDiv.hide();
+}
+
 function voteYes() {
-	
+	voteDiv.hide();
 }
 
 function voteNo() {
-
+	voteDiv.hide();
 }
 
 function discardPolicy(e) {
 	discard_index = parseInt(e.path[0].id.charAt(15))
 	console.log("discarding policy " + discard_index)
+	discardDiv.hide();
 }
 
 function selectPolicy(e) {
 	discard_index = parseInt(e.path[0].id.charAt(14))
 	console.log("discarding policy " + discard_index)
+	selectDiv.hide();
 }
 
 $().ready(function () {
 
 	partyViewDiv = $('#player-assignment');
+	notificationDiv = $('#notification');
+	voteDiv = $('#vote-card');
+	discardDiv = $('#discard-policy-card');
+	selectDiv = $('#policy-card');
 
 	// Set player info and display assignment card
 	socket.on(startInfoMsg, function(msg) {
