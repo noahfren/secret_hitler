@@ -45,9 +45,7 @@ module.exports = {
 		}
 
 		this.discardUnused = function(unused) {
-			while (unused.length > 0) {
-				this.discard.push(unused.pop());
-			}
+			this.discard.push(unused);
 		}
 
 		for (var i = 0; i < NUM_LIBERAL_CARDS; i++) {

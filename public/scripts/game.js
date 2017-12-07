@@ -1,11 +1,24 @@
+// Socket IO message names
 const startInfoMsg = "startInfo";
 const nominationCandidateListMsg = "nominationCandidateList";
+const chancellorVoteMsg = "chancellorVote";
+const chancellorSelectedMsg = "chancellorSelected"
+const presidentPolicyHandMsg = "presidentPolicyHand";
+const chancellorPolicyHandMsg = "chancellorPolicyHand";
+const policyPlayedMsg = "policyPlayed";
+const newRoundMsg = "newRound";
 
+// Card Val Consts
+const LIBERAL = 'LIBERAL';
+const FASCIST = 'FASCIST';
+
+// Player Positions
 const NO_POSITION = 0;
 const PRESIDENT = 1;
 const CHANCELLOR = 2;
 const INELLIGIBLE = 3;
 
+// Player Roles
 const LIBERAL_ROLE = 0;
 const FASCIST_ROLE = 1;
 const HITLER_ROLE = 2;

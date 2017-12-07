@@ -9,12 +9,24 @@ var io = require('socket.io')(http,{
 
 var game = require('./model/game.js');
 
+// Socket IO message names
 var newGameMsg = 'newGame';
 var joinGameMsg = 'joinGame';
 var playerJoinedMsg = 'playerJoined';
 var gameReadyMsg = 'gameReady';
 var goToGameMsg = 'goToGame';
 
+// Socket IO message names
+const startInfoMsg = "startInfo";
+const nominationCandidateListMsg = "nominationCandidateList";
+const chancellorVoteMsg = "chancellorVote";
+const chancellorSelectedMsg = "chancellorSelected"
+const presidentPolicyHandMsg = "presidentPolicyHand";
+const chancellorPolicyHandMsg = "chancellorPolicyHand";
+const policyPlayedMsg = "policyPlayed";
+const newRoundMsg = "newRound";
+
+// Socket IO player response names
 var joinGameRespMsg = 'joinGameResp';
 
 var nameTakenErr = 'nameTaken';
