@@ -52,7 +52,7 @@ html * {
 	border: solid;
 }
 
-#policy-card{
+#policy-card {
 	width: 600px;
 	height: 325px;
 	position: fixed;
@@ -62,7 +62,7 @@ html * {
 	border: solid;
 }
 
-.policy_card_img{
+.policy_card_img {
 	width: 150px;
 	border: solid;
 }
@@ -77,12 +77,12 @@ html * {
 	margin-left: -350px;
 }
 
-#column-spacing{
+#column-spacing {
 	margin-left: 25px;
 	margin-right: 25px;
 }
 
-#select-player-card{
+#select-player-card {
 	width: 500px;
 	height: 250px;
 	position: fixed;
@@ -92,7 +92,7 @@ html * {
 	border: solid;
 }
 
-#player-title{
+#player-title {
 	padding-top: 30px;
 	padding-bottom: 15px;
 }
@@ -102,7 +102,7 @@ html * {
 	padding-bottom: 5px;
 }
 
-#player-assignment{
+#player-assignment {
 	position: fixed;
 	top: 30%;
 	left: 50%;
@@ -111,12 +111,12 @@ html * {
 	height: 402px;
 }
 
-#hilter-card{
+#hilter-card {
 	width: 303px;
 	height: 402px;
 }
 
-#remove-x{
+#remove-x {
 	position: absolute;
 	top: 0.5px;
 	right: 0.5px;
@@ -124,16 +124,82 @@ html * {
 	width: 20px;
 }
 
-#lib-policy-card-1 {
+.lib-policy-card {
 	position: absolute;
-	width: 90px;
-	top: 288px;
-	left: 122px;
+	width: 11.75%;
+	/*top: 288px;*/
+	top: 61.6%;
+}
+
+#lib-policy-card-1 {
+	/*left: 122px;*/
+	left: 16.2%;
+	display: none;
+}
+
+#lib-policy-card-2 {
+	/*left: 228px;*/
+	left: 30.1%;
+	display: none;
+}
+
+#lib-policy-card-3 {
+	/*left: 335px;*/
+	left: 44.2%;
+	display: none;
+}
+
+#lib-policy-card-4 {
+	/*left: 442px;*/
+	left: 58.1%;
+	display: none;
+}
+
+#lib-policy-card-5 {
+	/*left: 549px;*/
+	left: 72.2%;
+	display: none;
+}
+
+.fas-policy-card {
+	position: absolute;
+	width: 11.75%;
+	/*top: 54px;*/
+	top: 11.52%;
 }
 
 #fas-policy-card-1 {
-	position: absolute;
-	width: 90px;
-	top: 54px;
-	left: 69px;
+	/*left: 69px;*/
+	left: 9.1%;
+	display: none;
+}
+
+#fas-policy-card-2 {
+	/*left: 176px;*/
+	left: 23.2%;
+	display: none;
+}
+
+#fas-policy-card-3 {
+	/*left: 283px;*/
+	left: 37.3%;
+	display: none;
+}
+
+#fas-policy-card-4 {
+	/*left: 390px;*/
+	left: 51.3%;
+	display: none;
+}
+
+#fas-policy-card-5 {
+	/*left: 497px;*/
+	left: 65.4%;
+	display: none;
+}
+
+#fas-policy-card-6 {
+	/*left: 603px;*/
+	left: 79.4%;
+	display: none;
 }
