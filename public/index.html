@@ -120,11 +120,11 @@
           <div class="row" id="vote_img_row">
             <div class="col-sm-1"></div>
             <div class="col-sm-5">
-              <img class="vote_img" src="img/yes_card.png">
+              <img class="vote_img" onclick="voteYes()" src="img/yes_card.png">
             </div>
             <div class="col-sm-1"></div>
             <div class="col-sm-5">
-              <img class="vote_img" src="img/no_card.png">
+              <img class="vote_img" onclick="voteNo()" src="img/no_card.png">
             </div>
           </div>
         </div>
@@ -138,13 +138,13 @@
           </div>
           <div class="row" id="policy-card-row">
             <div class="col-sm-3" id="column-spacing">
-              <center><img class="policy_card_img" src="img/liberal_policy_card.png">
+              <center><img class="policy_card_img" onclick="discardPolicy(event)" src="img/liberal_policy_card.png">
             </div>
             <div class="col-sm-3" id="column-spacing">
-              <center><img class="policy_card_img" src="img/liberal_policy_card.png">
+              <center><img class="policy_card_img" onclick="discardPolicy(event)" src="img/liberal_policy_card.png">
             </div>
             <div class="col-sm-3" id="column-spacing">
-              <center><img class="policy_card_img" src="img/liberal_policy_card.png">
+              <center><img class="policy_card_img" onclick="discardPolicy(event)" src="img/liberal_policy_card.png">
             </div>
           </div>
         </div>
@@ -159,10 +159,10 @@
           <div class="row" id="vote_img_row">
             <div class="col-sm-1"></div>
             <div class="col-sm-5">
-              <center><img class="policy_card_img" src="img/liberal_policy_card.png">
+              <center><img class="policy_card_img" onclick="selectPolicy(event)" src="img/liberal_policy_card.png">
             </div>
             <div class="col-sm-5">
-              <center><img class="policy_card_img" src="img/fascist_policy_card.png">
+              <center><img class="policy_card_img" onclick="selectPolicy(event)" src="img/fascist_policy_card.png">
             </div>
           </div>
         </div>

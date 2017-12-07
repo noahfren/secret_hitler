@@ -5,13 +5,19 @@ html * {
 	background-color: #fdfdfd
 }
 
-#new-game-btn {
-	background-color: #363636;
-	color: white;
-}
-
 #hitler-logo {
 	width: 500px;
+}
+
+.btn-primary {
+	background-color: #363636;
+	color: white;
+	border-color: gray;
+}
+
+.btn-primary:hover {
+	background-color: gray;
+	border-color: black;
 }
 
 #start-game-btn {
@@ -38,43 +44,56 @@ html * {
 }
 
 .vote_img {
-	height: 250px;
+	-ms-transform: rotate(90deg); /* IE 9 */
+	-webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+ 	transform: rotate(90deg);
+ 	width: 75%;
+ 	border: solid;
+	/*height: 250px;*/
     /*height: 357px;
     width: 250px;*/
 }
 
 #vote-card {
-	width: 600px;
+	/*width: 700px;
 	position: fixed;
-	top: 33%;
+	top: 30%;
 	left: 50%;
-	margin-left: -300px;
+	margin-left: -350px;*/
+	z-index: 1;
+	width: 55%;
+	position: absolute;
+	top: 33%;
+	left: 22.5%;
+	/*margin-left: -300px;*/
 	border: solid;
 }
 
 #policy-card {
-	width: 600px;
+	width: 52.7%;
 	height: 325px;
-	position: fixed;
+	position: absolute;
 	top: 33%;
-	left: 50%;
-	margin-left: -300px;
+	left: 23.6%;
+	/*margin-left: -300px;*/
 	border: solid;
 }
 
 .policy_card_img {
-	width: 150px;
+	/*width: 150px;*/
+	width: 100%;
+	margin-bottom: 20px;
 	border: solid;
 }
 
 #discard-policy-card{
-	width: 700px;
+	width: 55%;
 	height: 325px;
 	border: solid;
-	position: fixed;
+	position: absolute;
 	top: 33%;
-	left: 50%;
-	margin-left: -350px;
+	left: 22.6%;
+	/*margin-left: -350px;*/
 }
 
 #column-spacing {
@@ -83,12 +102,12 @@ html * {
 }
 
 #select-player-card {
-	width: 500px;
+	width: 45%;
 	height: 250px;
-	position: fixed;
+	position: absolute;
 	top: 33%;
-	left: 50%;
-	margin-left: -250px;
+	left: 27.4%;
+	/*margin-left: -250px;*/
 	border: solid;
 }
 
@@ -103,17 +122,17 @@ html * {
 }
 
 #player-assignment {
-	position: fixed;
+	position: absolute;
 	top: 30%;
-	left: 50%;
-	margin-left: -151.5px;
-	width: 303px;
-	height: 402px;
+	left: 40%;
+	/*margin-left: -151.5px;*/
+	width: 20%;
+	/*height: 402px;*/
 }
 
 #card-img{
-	width: 303px;
-	height: 402px;
+	width: 100%;
+	/*height: 402px;*/
 }
 
 #remove-x {
