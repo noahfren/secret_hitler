@@ -63,6 +63,12 @@ function selectPolicy(e) {
 	selectDiv.hide();
 }
 
+function selectPlayer(e) {
+	console.log(playerDropdownDiv)
+	dropdown = $("#player-select-dropdown").find("option:selected").attr("data-value");
+	console.log(dropdown)
+}
+
 $().ready(function () {
 
 	partyViewDiv = $('#player-assignment');
@@ -70,13 +76,14 @@ $().ready(function () {
 	voteDiv = $('#vote-card');
 	discardDiv = $('#discard-policy-card');
 	selectDiv = $('#policy-card');
+	playerDropdownDiv = $("#select-player-card");
 
 	// Set player info and display assignment card
 	socket.on(startInfoMsg, function(msg) {
 		playerID = msg.id;
 		players = msg.players;
 		curPresident = msg.president;
-		roleImgFilepath = 'img/president_card.png'; // Weird filename, actually hitler card
+		roleImgFilepath = 'img/president_card.png'; // Weird filename, actually hitler card - should be fuhrer_card.png if anything
 		if (msg.role == FASCIST_ROLE) {
 			roleImgFilepath = 'img/fascist_card.png';
 			playerRole = FASCIST_ROLE;
