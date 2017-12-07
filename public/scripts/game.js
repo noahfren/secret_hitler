@@ -89,4 +89,20 @@ $().ready(function () {
 		partyViewDiv.show();
 	});
 
+	// President must choose chancellor nominee
+	socket.on(nominationCandidateListMsg, function(msg) {
+		for (var i = 0; i < msg.candidates.length; i++) {
+			candidateName = msg.candidates[i].name; // Display this in selector
+			candidateId = msg.candidates[i].id; // Return this in response
+
+			// TODO: Add candidate selctions to selectDiv
+		}
+	});
+
+	// Player votes on chancellor nomination
+	socket.on(chancellorVoteMsg, function(msg) {
+		// TODO: Change text to say who player is voting for
+		voteDiv.show();
+	});
+
 });

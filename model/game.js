@@ -84,6 +84,7 @@ module.exports = {
 		this.deck = new deck.Deck();
 		this.numLiberalPolicies = 0;
 		this.numFascistPolicies = 0;
+		this.electionTracker = 0;
 
 		this.addPlayer = function (name_in, socket_in) {
 			var nPlayers = this.players.length;
@@ -166,7 +167,7 @@ module.exports = {
 			var candidates = [];
 			for (var i = 0; i < this.players.length; i++) {
 				if (this.players[i].isElligibleChancellor()) {
-					candidates.push(i);
+					candidates.push({name: this.players[i].name, id: i});
 				}
 			}
 			this.president.emit(nominationCandidateListMsg, {
@@ -176,26 +177,57 @@ module.exports = {
 		}
 
 		// Send chancellor nomination to players for voting
-		this.nominateChancellor = function (chancellorId) {
+		this.nominateChancellor = function (chancellorIndex) {
+			this.nominee = this.players[chancellorIndex];
 			for (var i = 0; i < this.players.length; i++) {
 				this.players[i].emit(chancellorVoteMsg, {
-					chancellorId: chancellorId
+					chancellorName: this.nominee.name
 				});
 			}
-			this.votes = 
+			this.votes = [];
+			this.numVotes = 0;
+			for (var i = 0; i < this.players.length; i++) {
+				this.votes.push(false);
+			}
 		}
 
-		this.tallyVote = function (playerId, )
+		this.tallyVote = function (playerId, vote) {
+			this.votes[playerId] = vote;
+			if (this.numVotes == this.players.length) {
+				var numYes = 0;
+				var numNo = 0;
+				for (var i = 0; i < this.players.length; i++) {
+					if (this.votes[i]) {
+						numYes += 1;
+					}
+					else {
+						numNo += 1;
+					}
+				}
+				if (numYes > numNo) {
+					this.electChancellor()
+				}
+				else {
+					this.electionTracker += 1;
+					if (this.electionTracker == 3) {
+						this.electionsFailed();
+					}
+					else {
+						this.newRound();
+					}
+				}
+			}
+		}
 
 		// If election is successful set new chancellor
-		this.electChancellor = function (chencellorId) {
-			this.chancellor = this.players[chancellorId];
-			// TODO : check game over
-			this.chancellor = this.players[chancellorId];
+		this.electChancellor = function () {
+			this.electionTracker = 0;
+			this.chancellor = this.nominee;
 			this.chancellor.makeChancellor();
+			// TODO : check game over
 			for (var i = 0; 9 < this.players.length; i++) {
 				this.players[i].emit(chancellorSelectedMsg, {
-					chancellor: chancellorId
+					chancellor: this.chancellor.name
 				});
 			}
 		}
@@ -252,10 +284,16 @@ module.exports = {
 			for (var i =0; i < this.players.length; i++) {
 				this.players[i].emit(newRoundMsg, {
 					round: this.round,
-					president: this.president.id
+					president: this.president.id,
+					electionTracker: this.electionTracker
 				});
 			}
 			this.sendCandidates();
+		}
+
+		// TODO: this guy
+		this.electionsFailed = function () {
+
 		}
 	}
 };
