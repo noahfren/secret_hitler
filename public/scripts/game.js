@@ -34,6 +34,8 @@ var playerPosition = NO_POSITION;
 var players = [];
 var curPresident = 0;
 var curChancellor = 0;
+var lib_policies = 0;
+var fas_policies = 0;
 
 function hidePlayerAssignmentCard() {
 	partyViewDiv.hide();
@@ -68,15 +70,25 @@ function selectPlayer(e) {
 	console.log(dropdown)
 }
 
+function notificationHelper(text) {
+	notificationText.html(text);
+}
+
 $().ready(function () {
 
 	partyViewDiv = $('#player-assignment');
 	notificationDiv = $('#notification');
+	notificationText = $('#notification-title h3');
 	voteDiv = $('#vote-card');
 	discardDiv = $('#discard-policy-card');
 	selectDiv = $('#policy-card');
 	playerSelectDiv = $("#select-player-card");
 	dropdownHTML = $("#player-select-dropdown select");
+	presidentHand0 = $("discard-policy-0");
+	presidentHand1 = $("discard-policy-1");
+	presidentHand2 = $("discard-policy-2");
+	chancellorHand0 = $("select-policy-0");
+	chancellorHand1 = $("select-policy-1");
 
 
 	// Set player info and display assignment card
@@ -116,6 +128,62 @@ $().ready(function () {
 
 		}
 	});
+
+	socket.on(presidentPolicyHandMsg, function(msg)) {
+		if(msg.hand[0] == LIBERAL) {
+			presidentHand0.attr("src","img/liberal_policy_card.png");
+		}
+		else {
+			presidentHand0.attr("src","img/fascist_policy_card.png");
+		}
+
+		if(msg.hand[1] == LIBERAL) {
+			presidentHand1.attr("src","img/liberal_policy_card.png");
+		}
+		else {
+			presidentHand1.attr("src","img/fascist_policy_card.png");
+		}
+
+		if(msg.hand[2] == LIBERAL) {
+			presidentHand2.attr("src","img/liberal_policy_card.png");
+		}
+		else {
+			presidentHand2.attr("src","img/fascist_policy_card.png");
+		}
+	}
+
+	socket.on(chancellorPolicyHandMsg, function(msg)) {
+		if(msg.hand[0] == LIBERAL) {
+			chancellorHand0.attr("src","img/liberal_policy_card.png");
+		}
+		else {
+			chancellorHand0.attr("src","img/fascist_policy_card.png");
+		}
+
+		if(msg.hand[1] == LIBERAL) {
+			chancellorHand1.attr("src","img/liberal_policy_card.png");
+		}
+		else {
+			chancellorHand1.attr("src","img/fascist_policy_card.png");
+		}
+	}
+
+	socket.on(chancellorSelectedMsg, function(msg)) {
+		notificationHelper(msg.chancellor + " has been elected Chancellor!");
+	}
+
+	socket.on(policyPlayedMsg, function(msg)) {
+		notificationHelper(msg.chancellor + " has enacted a " + msg.policy + " POLICY")
+		if(msg.policy == LIBERAL)
+		{
+			$('#lib-policy-card-' + lib_policies).show();
+			lib_policies++;
+		}
+		else {
+			$('#fas-policy-card-' + fas_policies).show();
+			fas_policies++;
+		}
+	}
 
 	// Player votes on chancellor nomination
 	socket.on(chancellorVoteMsg, function(msg) {
