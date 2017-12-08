@@ -147,12 +147,14 @@ html * {
 	left: 37.4%;
 	/*margin-left: -151.5px;*/
 	width: 25%;
-	height: 75%;
+	padding-bottom: 1%;
 	border: solid;
 }
 
 #card-img {
 	width: 95%;
+	margin-bottom: 1%;
+	margin-top: 1%;
 	/*height: 402px;*/
 }
 
@@ -276,4 +278,8 @@ html * {
 	width: 1.5%;
 	left: 16.5%;
 	z-index: 2;
+}
+
+#fascist-info-row {
+	margin-left: .1%;
 }
