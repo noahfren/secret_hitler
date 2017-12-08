@@ -27,7 +27,6 @@ html * {
 
 #join-game-btn {
 	font-family: 'Spectral SC', serif !important;
-	font-weight: bold;
 }
 
 #game-screen-logo {
@@ -148,12 +147,12 @@ html * {
 	left: 37.4%;
 	/*margin-left: -151.5px;*/
 	width: 25%;
+	height: 75%;
 	border: solid;
 }
 
 #card-img {
-	width: 100%;
-	padding-bottom: 3%;
+	width: 95%;
 	/*height: 402px;*/
 }
 
@@ -277,8 +276,4 @@ html * {
 	width: 1.5%;
 	left: 16.5%;
 	z-index: 2;
-}
-
-#fascist-info-row {
-
 }

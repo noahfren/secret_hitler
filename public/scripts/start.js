@@ -77,6 +77,17 @@ function goToGame() {
   $('#game-screen').show();
 }
 
+function returnHandler() {
+  var nameInputField = $('#nameInputField');
+  nameInputField.val(name);
+
+  var gameCodeInputField = $('#gameCodeInputField');
+  gameCodeInputField.val("");
+
+  joinGameDiv.hide();
+  enterNameDiv.show();
+}
+
 function newGameHandler() {
   var nameInputField = $('#nameInputField');
   name = nameInputField.val();
