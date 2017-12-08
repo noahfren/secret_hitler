@@ -64,6 +64,18 @@ function sendVote(vote) {
 	});
 }
 
+function showRole() {
+	showRoleCard.show();
+	showRoleX.show();
+	showRoleButton.hide();
+}
+
+function hideRole() {
+	showRoleButton.show();
+	showRoleX.hide();
+	showRoleCard.hide();
+}
+
 function delayDisplay(div) {
 	if(notificationDiv.is(':visible') || partyViewDiv.is(':visible')) {
 		displayQueue.push(div);
@@ -158,6 +170,9 @@ $().ready(function () {
 	presidentHand2 = $("#discard-policy-2");
 	chancellorHand0 = $("#select-policy-0");
 	chancellorHand1 = $("#select-policy-1");
+	showRoleButton = $("#show-role-btn");
+	showRoleCard = $("#show-role-card");
+	showRoleX = $("#hide-role");
 
 
 	// Set player info and display assignment card
