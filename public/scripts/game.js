@@ -169,12 +169,20 @@ $().ready(function () {
 		if (msg.role == FASCIST_ROLE) {
 			roleImgFilepath = 'img/fascist_card.png';
 			playerRole = FASCIST_ROLE;
+			var fascistText = "Fascists:\n";
+			for (var i = 0; i < msg.fascistNames.length; i++) {
+				fascistText += msg.fascistNames[i] + '\n';
+			}
+			fascistText += "Hitler:\n" + msg.hitlerName;
+			partyViewDiv.children("#fascist-info").text(fascistText);
+			partyViewDiv.children("#fascist-info").show();
 		}
 		else if (msg.role == LIBERAL_ROLE) {
 			roleImgFilepath = 'img/liberal_card.png';
 			playerRole = LIBERAL_ROLE;
 		}
 		partyViewDiv.children('#card-img').attr('src', roleImgFilepath);
+		$("#show-role-card").attr('src', roleImgFilepath);
 		partyViewDiv.show();
 	});
 

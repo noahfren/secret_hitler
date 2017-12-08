@@ -129,8 +129,11 @@ module.exports = {
 			}
 			arr = utils.shuffle(arr);
 
-			this.players[arr.pop()].assignRole(player.HITLER_ROLE);
+			var hitlerIndex = arr.pop();
+			this.players[hitlerIndex].assignRole(player.HITLER_ROLE);
+			this.hitler = this.players[hitlerIndex];
 
+			this.fascistNames = [];
 
 			if (nPlayers >= 9) {
 				nFascists = 3;
@@ -143,7 +146,9 @@ module.exports = {
 			}
 
 			while (nFascists > 0) {
-				this.players[arr.pop()].assignRole(player.FASCIST_ROLE);
+				var index = arr.pop();
+				this.players[index].assignRole(player.FASCIST_ROLE);
+				this.fascistNames.push(this.players[index].name);
 				nFascists--;
 			}
 
@@ -166,7 +171,9 @@ module.exports = {
 				this.players[i].emit(startInfoMsg, {
 					id: i,
 					role: this.players[i].role,
-					players: playerNames.slice()
+					players: playerNames.slice(),
+					fascistNames: this.fascistNames.slice(),
+					hitlerName: this.hitler.name
 				});
 			}
 		}
@@ -358,6 +365,7 @@ module.exports = {
 					return true;
 				}
 			}
+			return false;
 		}
 
 		// TODO
