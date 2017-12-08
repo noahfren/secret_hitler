@@ -144,16 +144,16 @@ html * {
 
 #player-assignment {
 	position: absolute;
-	top: 30%;
+	top: 22%;
 	left: 37.4%;
-	border: solid;
 	/*margin-left: -151.5px;*/
 	width: 25%;
-	/*height: 402px;*/
+	height: 80%;
+	border: solid;
 }
 
 #card-img {
-	width: 100%;
+	width: 95%;
 	/*height: 402px;*/
 }
 
@@ -255,4 +255,26 @@ html * {
 	/*left: 603px;*/
 	left: 79.4%;
 	display: none;
+}
+
+#show-role-btn {
+	position: fixed;
+	top: 3%;
+	left: 3%;
+}
+
+#show-role-card {
+	position: fixed;
+	top: 3%;
+	left: 3%;
+	width: 15%;
+	z-index: 1;
+}
+
+#hide-role {
+	position: fixed;
+	top: 3%;
+	width: 1.5%;
+	left: 16.5%;
+	z-index: 2;
 }
