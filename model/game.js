@@ -346,8 +346,8 @@ module.exports = {
 					this.players[i].emit(gameOverMsg, {
 						cause: HITLER_ELECTED
 					});
-					return true;
 				}
+				return true;
 			}
 			if (this.fascistPoliciesPlayed == 6) {
 				console.log('Game Over: 6 fascist policies');
@@ -355,8 +355,8 @@ module.exports = {
 					this.players[i].emit(gameOverMsg, {
 						cause: FASCIST_POLICIES
 					});
-					return true;
 				}
+				return true;
 			}
 			if (this.liberalPoliciesPlayed == 5) {
 				console.log('Game Over: 5 liberal policies');
@@ -364,8 +364,8 @@ module.exports = {
 					this.players[i].emit(gameOverMsg, {
 						cause: LIBERAL_POLICIES
 					});
-					return true;
 				}
+				return true;
 			}
 			return false;
 		}

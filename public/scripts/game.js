@@ -189,8 +189,8 @@ $().ready(function () {
 				fascistText += msg.fascistNames[i] + '\n';
 			}
 			fascistText += "Hitler:\n" + msg.hitlerName;
-			partyViewDiv.children("#fascist-info").text(fascistText);
-			partyViewDiv.children("#fascist-info-row").show();
+			$("#fascist-info").text(fascistText);
+			$("#fascist-info-row").show();
 		}
 		else if (msg.role == LIBERAL_ROLE) {
 			roleImgFilepath = 'img/liberal_card.png';
@@ -204,7 +204,7 @@ $().ready(function () {
 	// Set up round
 	socket.on(newRoundMsg, function(msg) {
 		presidentInfo.text("President: " + msg.presidentName);
-		chancellorInfo.text("Waiting for Chancellor Nomination");
+		chancellorInfo.text("Waiting for Nomination");
 		if (msg.presidentId == playerID) {
 			is_president = true;
 		} 
