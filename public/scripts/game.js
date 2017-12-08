@@ -204,7 +204,7 @@ $().ready(function () {
 	// Set up round
 	socket.on(newRoundMsg, function(msg) {
 		presidentInfo.text("President: " + msg.presidentName);
-		chancellorInfo.text("Waiting for Chancellor Nomination");
+		chancellorInfo.text("Waiting for Nomination");
 		if (msg.presidentId == playerID) {
 			is_president = true;
 		} 

@@ -112,7 +112,7 @@ function joinGameHandler() {
 
 function joinGameSubmitHandler() {
   var gameCodeInputField = $('#gameCodeInputField');
-  gameCode = gameCodeInputField.val();
+  gameCode = gameCodeInputField.val().toUpperCase();
 
   socket.emit(joinGameMsg, {
     playerName: name, 
