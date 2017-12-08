@@ -50,6 +50,12 @@ const EXECUTION = 6;
 const INVESTIGATION = 7;
 const POLICY_PEEK = 8;
 
+// Game Over Casue Const
+const HITLER_ELECTED = 0;
+const FASCIST_POLICIES = 1;
+const LIBERAL_POLICIES = 2;
+const HITLER_KILLED = 3;
+
 // Socket IO message names
 const startInfoMsg = "startInfo";
 const nominationCandidateListMsg = "nominationCandidateList";
@@ -59,6 +65,7 @@ const presidentPolicyHandMsg = "presidentPolicyHand";
 const chancellorPolicyHandMsg = "chancellorPolicyHand";
 const policyPlayedMsg = "policyPlayed";
 const newRoundMsg = "newRound";
+const gameOverMsg = "gameOver";
 
 var deck = require('./deck.js');
 var player = require('./player.js');
@@ -85,6 +92,16 @@ module.exports = {
 		this.numLiberalPolicies = 0;
 		this.numFascistPolicies = 0;
 		this.electionTracker = 0;
+
+		this.removeCardAtIndex = function (index) {
+			var temp = [];
+			for (var i = 0; i < this.hand.length; i++) {
+				if (i != index) {
+					temp.push(this.hand[i]);
+				}
+			}
+			this.hand = temp;
+		}
 
 		this.addPlayer = function (name_in, socket_in) {
 			var nPlayers = this.players.length;
@@ -226,7 +243,9 @@ module.exports = {
 			this.electionTracker = 0;
 			this.chancellor = this.nominee;
 			this.chancellor.makeChancellor();
-			// TODO : check game over
+			if (this.checkGameOver()) {
+				return;
+			}
 			for (var i = 0; i < this.players.length; i++) {
 				this.players[i].emit(chancellorSelectedMsg, {
 					chancellorName: this.chancellor.name,
@@ -239,6 +258,7 @@ module.exports = {
 		// Send president policy cards so they can discard one
 		this.sendPresidentHand = function () {
 			this.hand = this.deck.getHand()
+			console.log(this.hand);
 			this.president.emit(presidentPolicyHandMsg, {
 				hand: this.hand.slice()
 			});
@@ -248,7 +268,8 @@ module.exports = {
 		this.sendChancellorHand = function (discardedPolicyIndex) {
 			console.log("President discarded policy " + discardedPolicyIndex);
 			this.deck.discardUnused(this.hand[discardedPolicyIndex]);
-			this.hand = this.hand.splice(discardedPolicyIndex, 1);
+			this.removeCardAtIndex(discardedPolicyIndex);
+			console.log(this.hand);
 			this.chancellor.emit(chancellorPolicyHandMsg, {
 				hand: this.hand.slice()
 			});
@@ -272,18 +293,22 @@ module.exports = {
 					policy: playedPolicy
 				});
 			}
-			// TODO: Check game over
+			if (this.checkGameOver()) {
+				return;
+			}
 			// TODO: Executive Actions
+			this.newRound();
 		}
 
 		this.newRound = function () {
 			this.round += 1;
 			for (var i = 0; i < this.players.length; i++) {
 				if (this.players[i].position == PRESIDENT || this.players[i].position == CHANCELLOR) {
-					this.players[i].position = INELLIGIBLE;
+					this.players[i].position = NO_POSITION;
+					//this.players[i].position = INELLIGIBLE;
 				}
 				else if (this.players[i].position == INELLIGIBLE) {
-					this.players[i],position == NO_POSITION;
+					this.players[i].position = NO_POSITION;
 				}
 			}
 			this.president = this.players[(this.president.id + 1) % this.players.length];
@@ -308,13 +333,30 @@ module.exports = {
 		// TODO
 		this.checkGameOver = function () {
 			if (this.chancellor.isHitler() && this.fascistPoliciesPlayed > 3) {
-				// GAME OVER
+				for (var i = 0; i < this.players.length; i++) {
+					this.players[i].emit(gameOverMsg, {
+						cause: HITLER_ELECTED
+					});
+					return true;
+				}
 			}
 			if (this.fascistPoliciesPlayed == 6) {
 				// GAME OVER
+				for (var i = 0; i < this.players.length; i++) {
+					this.players[i].emit(gameOverMsg, {
+						cause: FASCIST_POLICIES
+					});
+					return true;
+				}
 			}
 			if (this.liberalPoliciesPlayed == 5) {
 				// GAME OVER
+				for (var i = 0; i < this.players.length; i++) {
+					this.players[i].emit(gameOverMsg, {
+						cause: LIBERAL_POLICIES
+					});
+					return true;
+				}
 			}
 		}
 

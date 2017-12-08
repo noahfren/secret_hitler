@@ -28,7 +28,7 @@ module.exports = {
 
 		this.refresh = function() {
 			while (this.discard.length > 0) {
-				this.draw.append(this.discard.pop());
+				this.draw.push(this.discard.pop());
 			}
 			this.shuffle();
 		}

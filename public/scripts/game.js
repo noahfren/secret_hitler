@@ -7,6 +7,7 @@ const presidentPolicyHandMsg = "presidentPolicyHand";
 const chancellorPolicyHandMsg = "chancellorPolicyHand";
 const policyPlayedMsg = "policyPlayed";
 const newRoundMsg = "newRound";
+const gameOverMsg = "gameOver";
 
 // Socket IO response names
 const nominationCandidateListRespMsg = "nominationCandidateListResp";
@@ -23,6 +24,12 @@ const NO_POSITION = 0;
 const PRESIDENT = 1;
 const CHANCELLOR = 2;
 const INELLIGIBLE = 3;
+
+// Game Over Casue Const
+const HITLER_ELECTED = 0;
+const FASCIST_POLICIES = 1;
+const LIBERAL_POLICIES = 2;
+const HITLER_KILLED = 3;
 
 // Player Roles
 const LIBERAL_ROLE = 0;
@@ -174,8 +181,12 @@ $().ready(function () {
 	// Set up round
 	socket.on(newRoundMsg, function(msg) {
 		presidentInfo.text("President: " + msg.presidentName);
+		chancellorInfo.text("Waiting for Chancellor Nomination");
 		if (msg.presidentId == playerID) {
 			is_president = true;
+		} 
+		else {
+			is_president = false;
 		}
 		is_chancellor = false;
 	});
@@ -248,15 +259,22 @@ $().ready(function () {
 
 	socket.on(policyPlayedMsg, function(msg) {
 		console.log("Policy played!");
-		notificationHelper(msg.chancellor + " has enacted a " + msg.policy + " POLICY");
+		notificationHelper("Chancellor " + msg.chancellor + " has enacted a " + msg.policy + " POLICY");
+		console.log(msg);
 		if(msg.policy == LIBERAL)
 		{
-			$('#lib-policy-card-' + lib_policies).show();
 			lib_policies++;
+			console.log("Num liberal: " + lib_policies);
+			var tmp = $('#lib-policy-card-' + lib_policies);
+			console.log(tmp);
+			tmp.show();
 		}
 		else {
-			$('#fas-policy-card-' + fas_policies).show();
 			fas_policies++;
+			console.log("Num fascist: " + fas_policies);
+			var tmp = $('#fas-policy-card-' + fas_policies);
+			console.log(tmp);
+			tmp.show();
 		}
 	});
 
@@ -265,6 +283,24 @@ $().ready(function () {
 		console.log("REcieved vote msg for " + msg.chancellorName);
 		$('#elect_title').text("Elect " + msg.chancellorName +" as Chancellor?");
 		delayDisplay(voteDiv);
+	});
+
+	socket.on(gameOverMsg, function(msg) {
+		console.log("Game Over!");
+		var text = "Game Over! ";
+		if (msg.cause == HITLER_ELECTED) {
+			text += "Hitler was elected chancellor."
+		}
+		else if (msg.cause == FASCIST_POLICIES) {
+			text += "6 Fascist policied were played."
+		}
+		else if (msg.cause == LIBERAL_POLICIES) {
+			text += "5 Liberal policied were played."
+		}
+		else {
+			text += "Hitler was assasinated!"
+		}
+		notificationHelper(text);
 	});
 
 });
