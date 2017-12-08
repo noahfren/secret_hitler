@@ -28,7 +28,7 @@
   
   <body>
     <!-- Start Screen -->
-    <div class="container" id="join-game-container" style="display: none">
+    <div class="container" id="join-game-container">
       <div id="start-screen">
         <div id="logo">
           <center><img id="hitler-logo" src="img/logo.png"></center>
@@ -74,7 +74,7 @@
     <!-- End Start Screen -->
 
     <!-- Game Screen -->
-    <div id="game-screen" class="container" >
+    <div id="game-screen" class="container" style="display: none">
       <!-- Nav bar -->
       <div class="row">
         <img id="game-screen-logo" src="img/logo.png" alt="Secret Hitler">
@@ -131,7 +131,7 @@
       </div>
 
       <!-- Assignment Card -->
-      <div id="player-assignment" class="card" >
+      <div id="player-assignment" class="card" style="display: none">
         <div class="container">
           <center><img id="card-img" src="img/president_card.png"></center>
           <img id="remove-x" src="img/cancel-button.png" onclick="hidePlayerAssignmentCard()">
