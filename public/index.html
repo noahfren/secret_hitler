@@ -73,7 +73,7 @@
     <!-- End Start Screen -->
 
     <!-- Game Screen -->
-    <div id="game-screen" class="container">
+    <div id="game-screen" class="container" >
       <!-- Nav bar -->
       <div class="row">
         <img id="game-screen-logo" src="img/logo.png" alt="Secret Hitler">
@@ -130,10 +130,16 @@
       </div>
 
       <!-- Assignment Card -->
-      <div id="player-assignment" class="card" style="display: none">
-        <center><img id="card-img" src="img/president_card.png"></center>
-        <img id="remove-x" src="img/cancel-button.png" onclick="hidePlayerAssignmentCard()">
-        <div id="fascist-info"></div>
+      <div id="player-assignment" class="card" >
+        <div class="container">
+          <center><img id="card-img" src="img/president_card.png"></center>
+          <img id="remove-x" src="img/cancel-button.png" onclick="hidePlayerAssignmentCard()">
+          <div class="row" id="fascist-info-row" style="display: none">
+            <div id="fascist-info">
+            </div>
+
+          </div>
+        </div>
       </div>
 
       <!-- Vote Card -->
