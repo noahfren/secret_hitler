@@ -144,16 +144,16 @@ html * {
 
 #player-assignment {
 	position: absolute;
-	top: 30%;
+	top: 22%;
 	left: 37.4%;
-	border: solid;
 	/*margin-left: -151.5px;*/
 	width: 25%;
-	/*height: 402px;*/
+	height: 80%;
+	border: solid;
 }
 
 #card-img {
-	width: 100%;
+	width: 95%;
 	/*height: 402px;*/
 }
 

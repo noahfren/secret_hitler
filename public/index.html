@@ -28,7 +28,7 @@
   
   <body>
     <!-- Start Screen -->
-    <div class="container" id="join-game-container">
+    <div class="container" id="join-game-container" style="display: none">
       <div id="start-screen">
         <div id="logo">
           <center><img id="hitler-logo" src="img/logo.png"></center>
@@ -66,14 +66,14 @@
 
         <!-- Waiting Message -->
         <div id="waiting-message" style="display: none">
-          <h4>Waiting for other players...</h4>
+          <center><h4>Waiting for other players...</h4>
         </div> 
       </div>
     </div>
     <!-- End Start Screen -->
 
     <!-- Game Screen -->
-    <div id="game-screen" class="container" style="display: none">
+    <div id="game-screen" class="container">
 
       <!-- Nav bar -->
       <div class="row">
@@ -122,9 +122,13 @@
       </div>
 
       <!-- Assignment Card -->
-      <div id="player-assignment" class="card" style="display: none">
-        <img id="card-img" src="img/president_card.png">
+      <div id="player-assignment" class="card">
+        <center><img id="card-img" src="img/president_card.png"></center>
         <img id="remove-x" src="img/cancel-button.png" onclick="hidePlayerAssignmentCard()">
+        <div id="fascist-info">
+          <p style="margin: 5px">Other Fascists: </p>
+          <p style="margin: 5px">Hitler: </p>
+        </div>
       </div>
 
       <!-- Vote Card -->
