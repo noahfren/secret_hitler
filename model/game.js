@@ -89,8 +89,8 @@ module.exports = {
 		this.phase = NEW_GAME;
 		this.round = 0;
 		this.deck = new deck.Deck();
-		this.numLiberalPolicies = 0;
-		this.numFascistPolicies = 0;
+		this.liberalPoliciesPlayed = 0;
+		this.fascistPoliciesPlayed = 0;
 		this.electionTracker = 0;
 
 		this.removeCardAtIndex = function (index) {
@@ -339,7 +339,9 @@ module.exports = {
 
 		// TODO
 		this.checkGameOver = function () {
+			console.log('Checking if game over');
 			if (this.chancellor.isHitler() && this.fascistPoliciesPlayed > 3) {
+				console.log('Game Over: Hitler is elected');
 				for (var i = 0; i < this.players.length; i++) {
 					this.players[i].emit(gameOverMsg, {
 						cause: HITLER_ELECTED
@@ -348,7 +350,7 @@ module.exports = {
 				}
 			}
 			if (this.fascistPoliciesPlayed == 6) {
-				// GAME OVER
+				console.log('Game Over: 6 fascist policies');
 				for (var i = 0; i < this.players.length; i++) {
 					this.players[i].emit(gameOverMsg, {
 						cause: FASCIST_POLICIES
@@ -357,7 +359,7 @@ module.exports = {
 				}
 			}
 			if (this.liberalPoliciesPlayed == 5) {
-				// GAME OVER
+				console.log('Game Over: 5 liberal policies');
 				for (var i = 0; i < this.players.length; i++) {
 					this.players[i].emit(gameOverMsg, {
 						cause: LIBERAL_POLICIES

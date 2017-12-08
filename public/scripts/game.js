@@ -190,13 +190,13 @@ $().ready(function () {
 			}
 			fascistText += "Hitler:\n" + msg.hitlerName;
 			partyViewDiv.children("#fascist-info").text(fascistText);
-			partyViewDiv.children("#fascist-info").show();
+			partyViewDiv.children("#fascist-info-row").show();
 		}
 		else if (msg.role == LIBERAL_ROLE) {
 			roleImgFilepath = 'img/liberal_card.png';
 			playerRole = LIBERAL_ROLE;
 		}
-		partyViewDiv.children('#card-img').attr('src', roleImgFilepath);
+		$('#card-img').attr('src', roleImgFilepath);
 		$("#show-role-card").attr('src', roleImgFilepath);
 		partyViewDiv.show();
 	});
