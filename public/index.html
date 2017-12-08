@@ -74,10 +74,19 @@
 
     <!-- Game Screen -->
     <div id="game-screen" class="container">
-
+      
       <!-- Nav bar -->
       <div class="row">
         <img id="game-screen-logo" src="img/logo.png" alt="Secret Hitler">
+      </div>
+
+      <!-- Show Role Button -->
+      <div>
+        <button id="show-role-btn" onclick="showRole()" class="btn btn-primary">Show Role</button>
+        <div id="role-div">
+          <img id="show-role-card" src="img/president_card.png" style="display: none">
+          <img id="hide-role" src="img/cancel-button.png" onclick="hideRole()" style="display: none">
+        </div>
       </div>
 
       <!-- Player Info -->
