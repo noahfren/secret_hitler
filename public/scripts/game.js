@@ -160,6 +160,7 @@ function notificationHelper(text) {
 
 $().ready(function () {
 
+	gameScreen = $("#game-screen");
 	presidentInfo = $("#president-info");
 	chancellorInfo = $('#chancellor-info');
 	partyViewDiv = $('#player-assignment');
@@ -178,6 +179,9 @@ $().ready(function () {
 	showRoleButton = $("#show-role-btn");
 	showRoleCard = $("#show-role-card");
 	showRoleX = $("#hide-role");
+	libWin = $("#lib-end");
+	fasWin = $("#fas-end");
+	endMsg = $("#end-msg");
 
 
 	// Set player info and display assignment card
@@ -337,20 +341,32 @@ $().ready(function () {
 
 	socket.on(gameOverMsg, function(msg) {
 		console.log("Game Over!");
-		var text = "Game Over! ";
+		var text = "";
 		if (msg.cause == HITLER_ELECTED) {
 			text += "Hitler was elected chancellor."
+			endMsg.text(text);
+			gameScreen.hide();
+			fasWin.show();
 		}
 		else if (msg.cause == FASCIST_POLICIES) {
 			text += "6 Fascist policied were played."
+			endMsg.text(text);
+			gameScreen.hide();
+			fasWin.show();
 		}
 		else if (msg.cause == LIBERAL_POLICIES) {
 			text += "5 Liberal policied were played."
+			endMsg.text(text);
+			gameScreen.hide();
+			libWin.show();
 		}
 		else {
 			text += "Hitler was assasinated!"
+			endMsg.text(text);
+			gameScreen.hide();
+			libWin.show();
 		}
-		notificationHelper(text);
+		
 	});
 
 });

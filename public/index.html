@@ -101,7 +101,9 @@
 
       <!-- Boards -->
       <div class="row">
-        <div class="col-sm-2"></div>
+        <div class="col-sm-2">
+          <!-- <div class="row"> <img id="side-img" src=img/badass-img.png></div> -->
+        </div>
         <div id="boards" class="col-sm-8">
           <img id="fascist-board" class="board-img" src="img/fascist_board_color.png">
           <img id="liberal-board" class="board-img" src="img/liberal_board_color.png">
@@ -136,8 +138,8 @@
           <center><img id="card-img" src="img/president_card.png"></center>
           <img id="remove-x" src="img/cancel-button.png" onclick="hidePlayerAssignmentCard()">
           <div class="row" id="fascist-info-row" style="display: none">
-            <div id="fascist-info">
-            </div>
+            <p id="fascist-info"></p>
+            <p id="hitler-info"></p>
           </div>
         </div>
       </div>
@@ -221,5 +223,41 @@
     </div>
 
     <!-- End Game Screen -->
+
+    <!-- Game Over Screens -->
+    <div class="container" id="lib-end" style="display: none">
+      <div class="row">
+        <img id="game-screen-logo" src="img/logo.png" alt="Secret Hitler">
+      </div>
+      <div class="row justify-content-center" >
+        <h1 id="game-over-text-1">Game Over!</h1>
+      </div>
+      <div class="row justify-content-center" id="end-img">
+        <img id="game-over-img" src="img/try_this.png">
+      </div>
+      <div class="row justify-content-center" >
+        <h1 id="game-over-text-2">Liberals Win</h1>
+      </div>
+      <div class="row justify-content-center" >
+        <h3 id="end-msg"></h3>
+      </div>
+    </div>
+    <div class="container" id="fas-end" style="display: none">
+      <div class="row">
+        <img id="game-screen-logo" src="img/logo.png" alt="Secret Hitler">
+      </div>
+      <div class="row justify-content-center" >
+        <h1 id="game-over-text-1">Game Over!</h1>
+      </div>
+      <div class="row justify-content-center" id="end-img">
+        <img id="game-over-img" src="img/try_this_2.png">
+      </div>
+      <div class="row justify-content-center" >
+        <h1 id="game-over-text-2">Fascists Win</h1>
+      </div>
+      <div class="row justify-content-center" >
+        <h3 id="end-msg"></h3>
+      </div>
+    </div>
   </body>
 </html>
