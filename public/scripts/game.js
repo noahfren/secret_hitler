@@ -99,6 +99,11 @@ function hidePlayerAssignmentCard() {
 	displayNext();
 }
 
+function hidePolicyPeek(){
+	policyPeekDiv.hide();
+	displayNext();
+}
+
 function hideNotification() {
 	notificationDiv.hide();
 	displayNext();
@@ -164,6 +169,7 @@ $().ready(function () {
 	presidentInfo = $("#president-info");
 	chancellorInfo = $('#chancellor-info');
 	partyViewDiv = $('#player-assignment');
+	policyPeekDiv = $('#policy-peek-card');
 	notificationDiv = $('#notification');
 	notificationText = $('#notification-title');
 	voteDiv = $('#vote-card');
