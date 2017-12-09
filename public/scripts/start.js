@@ -16,7 +16,7 @@ var tooManyPlayersErr = 'tooManyPlayers';
 
 var playersJoined = 0;
 
-const MIN_PLAYERS = 3;
+const MIN_PLAYERS = 5;
 
 $().ready(function () {
     enterNameDiv = $('#name-form');
