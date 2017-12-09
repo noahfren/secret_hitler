@@ -57,6 +57,8 @@ var is_execution = false;
 var is_president = false;
 var is_chancellor = false;
 
+var oceanmanMP3 = new Audio('img/ween-ocean-man.mp3');
+
 var displayQueue = [];
 
 function sendVote(vote) {
@@ -385,6 +387,8 @@ $().ready(function () {
 	socket.on(gameOverMsg, function(msg) {
 		console.log("Game Over!");
 		var text = "";
+		oceanmanMP3.loop = true;
+		oceanmanMP3.play();
 		if (msg.cause == HITLER_ELECTED) {
 			text += "Hitler was elected chancellor."
 			endMsgFas.text(text);
