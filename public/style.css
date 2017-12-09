@@ -116,6 +116,15 @@ html * {
 	/*margin-left: -350px;*/
 }
 
+#policy-peek-card{
+	width: 55%;
+	height: 325px;
+	border: solid;
+	position: absolute;
+	top: 33%;
+	left: 22.6%;
+}
+
 #column-spacing {
 	margin-left: 25px;
 	margin-right: 25px;
