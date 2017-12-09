@@ -48,6 +48,17 @@ module.exports = {
 			this.discard.push(unused);
 		}
 
+		this.policyPeek = function() {
+			var temp = [];
+			if (this.draw.length < 3) {
+				this.refresh();
+			}
+			temp.push(this.draw[0]);
+			temp.push(this.draw[1]);
+			temp.push(this.draw[2]);
+			return temp.slice();
+		}
+
 		for (var i = 0; i < NUM_LIBERAL_CARDS; i++) {
 			this.draw.push(LIBERAL);
 		}

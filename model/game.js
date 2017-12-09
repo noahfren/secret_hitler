@@ -67,6 +67,7 @@ const policyPlayedMsg = "policyPlayed";
 const newRoundMsg = "newRound";
 const playerExecutedMsg = "playerExecuted";
 const gameOverMsg = "gameOver";
+const policyPeekMsg = "policyPeek";
 
 var deck = require('./deck.js');
 var player = require('./player.js');
@@ -415,7 +416,9 @@ module.exports = {
 
 		// TODO
 		this.policyPeek = function () {
-
+			this.president.emit(policyPeekMsg, {
+				hand: this.deck.policyPeek()
+			});
 		}
 
 		// TODO

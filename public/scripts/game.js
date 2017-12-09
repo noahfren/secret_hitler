@@ -9,6 +9,7 @@ const policyPlayedMsg = "policyPlayed";
 const newRoundMsg = "newRound";
 const playerExecutedMsg = "playerExecuted";
 const gameOverMsg = "gameOver";
+const policyPeekMsg = "policyPeek";
 
 // Socket IO response names
 const nominationCandidateListRespMsg = "nominationCandidateListResp";
