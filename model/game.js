@@ -236,6 +236,20 @@ module.exports = {
 					this.electChancellor()
 				}
 				else {
+					for (var i = 0; i < this.players.length; i++) {
+						this.players[i].emit(chancellorSelectedMsg, {
+							chancellorName: this.nominee.name,
+							chancellorId: this.nominee.id,
+							elected: false
+						});
+					}
+					for (var i = 0; i < this.executedPlayers.length; i++) {
+						this.executedPlayers[i].emit(chancellorSelectedMsg, {
+							chancellorName: this.nominee.name,
+							chancellorId: this.nominee.id,
+							elected: false
+						});
+					}
 					this.electionTracker += 1;
 					if (this.electionTracker == 3) {
 						this.electionsFailed();
@@ -259,13 +273,15 @@ module.exports = {
 			for (var i = 0; i < this.players.length; i++) {
 				this.players[i].emit(chancellorSelectedMsg, {
 					chancellorName: this.chancellor.name,
-					chancellorId: this.chancellor.id
+					chancellorId: this.chancellor.id,
+					elected: true
 				});
 			}
 			for (var i = 0; i < this.executedPlayers.length; i++) {
 				this.executedPlayers[i].emit(chancellorSelectedMsg, {
 					chancellorName: this.chancellor.name,
-					chancellorId: this.chancellor.id
+					chancellorId: this.chancellor.id,
+					elected: true
 				});
 			}
 			this.sendPresidentHand();

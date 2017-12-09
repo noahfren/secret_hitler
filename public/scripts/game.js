@@ -298,12 +298,18 @@ $().ready(function () {
 	});
 
 	socket.on(chancellorSelectedMsg, function(msg) {
-		console.log("Chancellor selected!");
-		notificationHelper(msg.chancellorName + " has been elected Chancellor!");
-		chancellorInfo.text("Chancellor: " + msg.chancellorName);
-		if (msg.chancellorId == playerID) {
-			is_chancellor = true;
+		if (msg.elected) {
+			console.log("Chancellor selected!");
+			notificationHelper(msg.chancellorName + " has been elected Chancellor!");
+			chancellorInfo.text("Chancellor: " + msg.chancellorName);
+			if (msg.chancellorId == playerID) {
+				is_chancellor = true;
+			}
 		}
+		else {
+			notificationHelper(msg.chncellorName + " was not eleceted!");
+		}
+		
 	});
 
 	socket.on(policyPlayedMsg, function(msg) {
