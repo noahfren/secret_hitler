@@ -330,9 +330,9 @@ module.exports = {
 			this.round += 1;
 			for (var i = 0; i < this.players.length; i++) {
 				if (this.players[i].position == PRESIDENT || this.players[i].position == CHANCELLOR) {
-					this.players[i].position = NO_POSITION;
+					//this.players[i].position = NO_POSITION;
 					// ~~~~~~ CHANGE THIS BACK ~~~~~~~~~~~
-					//this.players[i].position = INELLIGIBLE;
+					this.players[i].position = INELLIGIBLE;
 				}
 				else if (this.players[i].position == INELLIGIBLE) {
 					this.players[i].position = NO_POSITION;

@@ -354,13 +354,13 @@ $().ready(function () {
 			fasWin.show();
 		}
 		else if (msg.cause == FASCIST_POLICIES) {
-			text += "6 Fascist policied were played."
+			text += "6 Fascist policies were played."
 			endMsgFas.text(text);
 			gameScreen.hide();
 			fasWin.show();
 		}
 		else if (msg.cause == LIBERAL_POLICIES) {
-			text += "5 Liberal policied were played."
+			text += "5 Liberal policies were played."
 			endMsgLib.text(text);
 			gameScreen.hide();
 			libWin.show();
