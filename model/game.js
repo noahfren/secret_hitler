@@ -8,26 +8,26 @@
 	// policyDeck (Deck)
 		// deck object containing this games policy cards
 
-	// liberalPoliciesPlayed (int)
+	// liberalPoliciesPlayed (var)
 		// count of liberal policy cards played
 
-	// fascistPoliciesPlayed (int)
+	// fascistPoliciesPlayed (var)
 		// count of fascist policy cards played
 
-	// electionFailureCount (int)
+	// electionFailureCount (var)
 		// count of number of elections failed in a row
 
 	// president (*Player)
-		// pointer to player that is currently president
+		// povarer to player that is currently president
 
 	// chancellor (*Player)
-		// pointer to player tha is currently chancellor
+		// povarer to player tha is currently chancellor
 		// nil if no current chancellor elected
 
-	// round (int)
+	// round (var)
 		// Counts number of rounds
 
-	// phase (int)
+	// phase (var)
 
 // Policy Card Vals
 const LIBERAL = 'LIBERAL';
@@ -65,6 +65,7 @@ const presidentPolicyHandMsg = "presidentPolicyHand";
 const chancellorPolicyHandMsg = "chancellorPolicyHand";
 const policyPlayedMsg = "policyPlayed";
 const newRoundMsg = "newRound";
+const playerExecutedMsg = "playerExecuted";
 const gameOverMsg = "gameOver";
 
 var deck = require('./deck.js');
@@ -86,6 +87,7 @@ module.exports = {
 	Game: function (id_in) {
 		this.id = id_in;
 		this.players = [];
+		this.executedPlayers = [];
 		this.phase = NEW_GAME;
 		this.round = 0;
 		this.deck = new deck.Deck();
@@ -194,7 +196,8 @@ module.exports = {
 				}
 			}
 			this.president.emit(nominationCandidateListMsg, {
-				candidates: candidates.slice()
+				candidates: candidates.slice(),
+				isExecution: false
 			});
 
 		}
@@ -250,11 +253,17 @@ module.exports = {
 			this.electionTracker = 0;
 			this.chancellor = this.nominee;
 			this.chancellor.makeChancellor();
-			if (this.checkGameOver()) {
+			if (this.checkGameOver(true)) {
 				return;
 			}
 			for (var i = 0; i < this.players.length; i++) {
 				this.players[i].emit(chancellorSelectedMsg, {
+					chancellorName: this.chancellor.name,
+					chancellorId: this.chancellor.id
+				});
+			}
+			for (var i = 0; i < this.executedPlayers.length; i++) {
+				this.executedPlayers[i].emit(chancellorSelectedMsg, {
 					chancellorName: this.chancellor.name,
 					chancellorId: this.chancellor.id
 				});
@@ -300,10 +309,20 @@ module.exports = {
 					policy: playedPolicy
 				});
 			}
-			if (this.checkGameOver()) {
+			for (var i = 0; i < this.executedPlayers.length; i++) {
+				this.executedPlayers[i].emit(policyPlayedMsg, {
+					chancellor: this.chancellor.name,
+					policy: playedPolicy
+				});
+			}
+			if (this.checkGameOver(false)) {
 				return;
 			}
 			// TODO: Executive Actions
+			if (this.fascistPoliciesPlayed == 4 || this.fascistPoliciesPlayed == 5) {
+				this.selectPlayerToKill();
+				return;
+			}
 			this.newRound();
 		}
 
@@ -312,6 +331,7 @@ module.exports = {
 			for (var i = 0; i < this.players.length; i++) {
 				if (this.players[i].position == PRESIDENT || this.players[i].position == CHANCELLOR) {
 					this.players[i].position = NO_POSITION;
+					// ~~~~~~ CHANGE THIS BACK ~~~~~~~~~~~
 					//this.players[i].position = INELLIGIBLE;
 				}
 				else if (this.players[i].position == INELLIGIBLE) {
@@ -328,6 +348,14 @@ module.exports = {
 					electionTracker: this.electionTracker
 				});
 			}
+			for (var i = 0; i < this.executedPlayers.length; i++) {
+				this.executedPlayers[i].emit(newRoundMsg, {
+					round: this.round,
+					presidentName: this.president.name,
+					presidentId: this.president.id,
+					electionTracker: this.electionTracker
+				});
+			}
 			this.sendCandidates();
 		}
 
@@ -338,34 +366,33 @@ module.exports = {
 		}
 
 		// TODO
-		this.checkGameOver = function () {
+		this.checkGameOver = function (election) {
 			console.log('Checking if game over');
-			if (this.chancellor.isHitler() && this.fascistPoliciesPlayed > 3) {
+			var cause = -1;
+			if (election && this.chancellor.isHitler() && this.fascistPoliciesPlayed > 3) {
 				console.log('Game Over: Hitler is elected');
-				for (var i = 0; i < this.players.length; i++) {
-					this.players[i].emit(gameOverMsg, {
-						cause: HITLER_ELECTED
-					});
-					return true;
-				}
+				cause = HITLER_ELECTED;
 			}
 			if (this.fascistPoliciesPlayed == 6) {
 				console.log('Game Over: 6 fascist policies');
-				for (var i = 0; i < this.players.length; i++) {
-					this.players[i].emit(gameOverMsg, {
-						cause: FASCIST_POLICIES
-					});
-					return true;
-				}
+				cause = FASCIST_POLICIES;
 			}
 			if (this.liberalPoliciesPlayed == 5) {
 				console.log('Game Over: 5 liberal policies');
+				cause = LIBERAL_POLICIES;
+			}
+			if (cause != -1) {
 				for (var i = 0; i < this.players.length; i++) {
 					this.players[i].emit(gameOverMsg, {
-						cause: LIBERAL_POLICIES
+						cause: cause
 					});
-					return true;
 				}
+				for (var i = 0; i < this.executedPlayers.length; i++) {
+					this.executedPlayers[i].emit(gameOverMsg, {
+						cause: cause
+					});
+				}
+				return true;
 			}
 			return false;
 		}
@@ -377,12 +404,62 @@ module.exports = {
 
 		// TODO
 		this.selectPlayerToKill = function () {
-
+			var candidates = [];
+			for (var i = 0; i < this.players.length; i++) {
+				if(i != this.president.id) {
+					candidates.push({name: this.players[i].name, id: i});
+				}
+			}
+			this.president.emit(nominationCandidateListMsg, {
+				candidates: candidates.slice(),
+				isExecution: true
+			});
 		}
 
 		// TODO
-		this.killPlayer = function () {
+		this.killPlayer = function (executedIndex) {
+			var newPlayers = [];
+			var executedPlayer = {};
+			for (var i = 0; i < this.players.length; i++) {
+				if (i == executedIndex) {
+					executedPlayer = this.players[i];
+					if (executedPlayer.isHitler()) {
+						for (var j = 0; j < this.players.length; j++) {
+							this.players[j].emit(gameOverMsg, {
+								cause: HITLER_KILLED
+							});
+						}
+						for (var j = 0; j < this.executedPlayers.length; j++) {
+							this.executedPlayers[j].emit(gameOverMsg, {
+								cause: HITLER_KILLED
+							});
+						}
+						return;
+					}
+					this.executedPlayers.push(executedPlayer);
 
+				}
+				else {
+					newPlayers.push(this.players[i]);
+					this.players[i].id = newPlayers.length - 1;
+				}
+			}
+			this.players = newPlayers.slice();
+			for (var i = 0; i < this.players.length; i++) {
+				this.players[i].emit(playerExecutedMsg, {
+					newId: i,
+					executedName: executedPlayer.name,
+					presidentName: this.president.name
+				});
+			}
+			for (var i = 0; i < this.executedPlayers.length; i++) {
+				this.executedPlayers[i].emit(playerExecutedMsg, {
+					newId: i,
+					executedName: executedPlayer.name,
+					presidentName: this.president.name
+				});
+			}
+			this.newRound();
 		}
 	}
 };

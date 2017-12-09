@@ -34,6 +34,7 @@ const nominationCandidateListRespMsg = "nominationCandidateListResp";
 const chancellorVoteRespMsg = "chancellorVoteResp";
 const presidentPolicyHandRespMsg = "presidentPolicyHandResp";
 const chancellorPolicyHandRespMsg = "chancellorPolicyHandResp";
+const executionChoiceRespMsg = "executionChoiceResp";
 
 var nameTakenErr = 'nameTaken';
 var invalidGameCodeErr = 'invalidGameCode';
@@ -109,6 +110,11 @@ io.on('connection', function(socket){
   	socket.on(chancellorPolicyHandRespMsg, function(msg) {
   		var curGame = games.get(msg.gameCode);
   		curGame.playPolicy(msg.selectedIndex);
+  	});
+
+  	socket.on(executionChoiceRespMsg, function(msg) {
+  		var curGame = games.get(msg.gameCode);
+  		curGame.killPlayer(msg.executeIndex);
   	});
 });
 
