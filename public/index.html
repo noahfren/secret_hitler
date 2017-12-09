@@ -28,7 +28,7 @@
   
   <body>
     <!-- Start Screen -->
-    <div class="container" id="join-game-container" style="display: none">
+    <div class="container" id="join-game-container">
       <div id="start-screen">
         <div id="logo">
           <center><img id="hitler-logo" src="img/logo.png"></center>
@@ -74,7 +74,7 @@
     <!-- End Start Screen -->
 
     <!-- Game Screen -->
-    <div id="game-screen" class="container">
+    <div id="game-screen" class="container" style="display: none">
       <!-- Nav bar -->
       <div class="row">
         <img id="game-screen-logo" src="img/logo.png" alt="Secret Hitler">
@@ -187,7 +187,7 @@
       </div>
 
       <!-- Policy Peek Card -->
-      <div class="card" id="policy-peek-card">
+      <div class="card" id="policy-peek-card" style="display: none">
         <div class="container">
           <img id="remove-x" src="img/cancel-button.png" onclick="hidePolicyPeek()">
           <div class="row justify-content-center" id="title_row">
