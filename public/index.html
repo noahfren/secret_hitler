@@ -28,7 +28,7 @@
   
   <body>
     <!-- Start Screen -->
-    <div class="container" id="join-game-container" style="display: none">
+    <div class="container" id="join-game-container">
       <div id="start-screen">
         <div id="logo">
           <center><img id="hitler-logo" src="img/logo.png"></center>
@@ -225,32 +225,32 @@
     <!-- End Game Screen -->
 
     <!-- Game Over Screens -->
-    <div class="container" id="lib-end" >
+    <div class="container" id="lib-end" style="display: none">
       <div class="row">
         <img id="game-screen-logo" src="img/logo.png" alt="Secret Hitler">
       </div>
-      <div class="row justify-content-center">
-        <h3>Game Over!</h3>
+      <div class="row justify-content-center" >
+        <h3 id="game-over-text-1">Game Over!</h3>
       </div>
-      <div class="row justify-content-center">
-        <img src="img/try_this.png">
+      <div class="row justify-content-center" id="end-img">
+        <img id="game-over-img" src="img/try_this.png">
       </div>
-      <div class="row justify-content-center">
-        <h3>Liberals Win</h3>
+      <div class="row justify-content-center" >
+        <h3 id="game-over-text-2">Liberals Win</h3>
       </div>
     </div>
     <div class="container" id="fas-end" style="display: none">
       <div class="row">
         <img id="game-screen-logo" src="img/logo.png" alt="Secret Hitler">
       </div>
-      <div class="row justify-content-center">
-        <h3>Game Over!</h3>
+      <div class="row justify-content-center" >
+        <h3 id="game-over-text-1">Game Over!</h3>
       </div>
-      <div class="row justify-content-center">
-        <img src="img/fascist_win.png">
+      <div class="row justify-content-center" id="end-img">
+        <img id="game-over-img" src="img/try_this_2.png">
       </div>
-      <div class="row justify-content-center">
-        <h3>Fascists Win</h3>
+      <div class="row justify-content-center" >
+        <h3 id="game-over-text-2">Fascists Win</h3>
       </div>
     </div>
   </body>
