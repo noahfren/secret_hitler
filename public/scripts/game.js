@@ -183,6 +183,9 @@ $().ready(function () {
 	presidentHand0 = $("#discard-policy-0");
 	presidentHand1 = $("#discard-policy-1");
 	presidentHand2 = $("#discard-policy-2");
+	peekHand0 = $("#peek-policy-0");
+	peekHand1 = $("#peek-policy-1");
+	peekHand2 = $("#peek-policy-2");
 	chancellorHand0 = $("#select-policy-0");
 	chancellorHand1 = $("#select-policy-1");
 	showRoleButton = $("#show-role-btn");
@@ -290,29 +293,29 @@ $().ready(function () {
 		delayDisplay(discardDiv);
 	});
 
-	socket.on(policyPeekMsg, function(msg)) {
+	socket.on(policyPeekMsg, function(msg) {
 		if(msg.hand[0] == LIBERAL) {
-			presidentHand0.attr("src","img/liberal_policy_card.png");
+			peekHand0.attr("src","img/liberal_policy_card.png");
 		}
 		else {
-			presidentHand0.attr("src","img/fascist_policy_card.png");
+			peekHand0.attr("src","img/fascist_policy_card.png");
 		}
 
 		if(msg.hand[1] == LIBERAL) {
-			presidentHand1.attr("src","img/liberal_policy_card.png");
+			peekHand1.attr("src","img/liberal_policy_card.png");
 		}
 		else {
-			presidentHand1.attr("src","img/fascist_policy_card.png");
+			peekHand1.attr("src","img/fascist_policy_card.png");
 		}
 
 		if(msg.hand[2] == LIBERAL) {
-			presidentHand2.attr("src","img/liberal_policy_card.png");
+			peekHand2.attr("src","img/liberal_policy_card.png");
 		}
 		else {
-			presidentHand2.attr("src","img/fascist_policy_card.png");
+			peekHand2.attr("src","img/fascist_policy_card.png");
 		}
 		delayDisplay(policyPeekCard);
-	}
+	});
 
 	socket.on(chancellorPolicyHandMsg, function(msg) {
 		if(msg.hand[0] == LIBERAL) {
@@ -341,7 +344,7 @@ $().ready(function () {
 			}
 		}
 		else {
-			notificationHelper(msg.chncellorName + " was not eleceted!");
+			notificationHelper(msg.chancellorName + " was not eleceted!");
 		}
 		
 	});

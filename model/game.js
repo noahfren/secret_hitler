@@ -336,7 +336,10 @@ module.exports = {
 				return;
 			}
 			// TODO: Executive Actions
-			if (this.fascistPoliciesPlayed == 4 || this.fascistPoliciesPlayed == 5) {
+			if (this.fascistPoliciesPlayed == 3) {
+				this.policyPeek();
+			}
+			else if (this.fascistPoliciesPlayed == 4 || this.fascistPoliciesPlayed == 5) {
 				this.selectPlayerToKill();
 				return;
 			}

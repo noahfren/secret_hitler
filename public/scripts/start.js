@@ -65,7 +65,7 @@ $().ready(function () {
 
 // Generate new game code
 function generateGameCode() {
-  var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  var chars = '0123456789';
   var result = '';
   for (var i = 6; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
   return result;

@@ -53,9 +53,9 @@ module.exports = {
 			if (this.draw.length < 3) {
 				this.refresh();
 			}
-			temp.push(this.draw[0]);
-			temp.push(this.draw[1]);
-			temp.push(this.draw[2]);
+			temp.push(this.draw[this.draw.length - 3]);
+			temp.push(this.draw[this.draw.length - 2]);
+			temp.push(this.draw[this.draw.length - 1]);
 			return temp.slice();
 		}
 
