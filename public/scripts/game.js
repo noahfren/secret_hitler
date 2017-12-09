@@ -7,6 +7,7 @@ const presidentPolicyHandMsg = "presidentPolicyHand";
 const chancellorPolicyHandMsg = "chancellorPolicyHand";
 const policyPlayedMsg = "policyPlayed";
 const newRoundMsg = "newRound";
+const playerExecutedMsg = "playerExecuted";
 const gameOverMsg = "gameOver";
 
 // Socket IO response names
@@ -14,6 +15,7 @@ const nominationCandidateListRespMsg = "nominationCandidateListResp";
 const chancellorVoteRespMsg = "chancellorVoteResp";
 const presidentPolicyHandRespMsg = "presidentPolicyHandResp";
 const chancellorPolicyHandRespMsg = "chancellorPolicyHandResp";
+const executionChoiceRespMsg = "executionChoiceResp";
 
 // Card Val Consts
 const LIBERAL = 'LIBERAL';
@@ -137,7 +139,10 @@ function selectPlayer() {
 	console.log(selected_player);
 	if (is_execution) {
 		is_execution = false;
-		// TODO: Execution choice response
+		socket.emit(executionChoiceRespMsg, {
+			gameCode: gameCode,
+			executeIndex: selected_player
+		});
 	}
 	else {
 		socket.emit(nominationCandidateListRespMsg, {
@@ -188,8 +193,9 @@ $().ready(function () {
 			for (var i = 0; i < msg.fascistNames.length; i++) {
 				fascistText += msg.fascistNames[i] + '\n';
 			}
-			fascistText += "Hitler:\n" + msg.hitlerName;
+			var hitlerText = "Hitler:\n" + msg.hitlerName;
 			$("#fascist-info").text(fascistText);
+			$("#hitler-info").text(hitlerText);
 			$("#fascist-info-row").show();
 		}
 		else if (msg.role == LIBERAL_ROLE) {
@@ -218,6 +224,17 @@ $().ready(function () {
 	socket.on(nominationCandidateListMsg, function(msg) {
 		console.log(msg);
 		dropdownHTML.empty();
+		if (msg.isExecution) {
+			is_execution = true;
+			$("#select-player-text").text("Select a Player to Execute");
+			$("#select-player-btn").text("Execute Player");
+		}
+		else {
+			is_execution = false;
+			$("#select-player-text").text("Select a Chancellor Nominee");
+			$("#select-player-btn").text("Submit Nominee");
+
+		}
 		for (var i = 0; i < msg.candidates.length; i++) {
 			candidateName = msg.candidates[i].name; // Display this in selector
 			candidateId = msg.candidates[i].id; // Return this in response
@@ -306,6 +323,16 @@ $().ready(function () {
 		console.log("REcieved vote msg for " + msg.chancellorName);
 		$('#elect_title').text("Elect " + msg.chancellorName +" as Chancellor?");
 		delayDisplay(voteDiv);
+	});
+
+	socket.on(playerExecutedMsg, function(msg) {
+		playerID = msg.newId;
+		if (msg.executedName == name) {
+			notificationHelper("You were executed by " + msg.presidentName + "!");
+		}
+		else {
+			notificationHelper("President " + msg.presidentName + " executed " + msg.executedName + "!");
+		}
 	});
 
 	socket.on(gameOverMsg, function(msg) {
