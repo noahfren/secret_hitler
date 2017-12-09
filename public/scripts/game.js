@@ -189,6 +189,7 @@ $().ready(function () {
 	fasWin = $("#fas-end");
 	endMsgLib = $("#end-msg-lib");
 	endMsgFas = $("#end-msg-fas");
+	policyPeekCard = $("#policy-peek-card");
 
 
 	// Set player info and display assignment card
@@ -285,6 +286,30 @@ $().ready(function () {
 		}
 		delayDisplay(discardDiv);
 	});
+
+	socket.on(policyPeekMsg, function(msg)) {
+		if(msg.hand[0] == LIBERAL) {
+			presidentHand0.attr("src","img/liberal_policy_card.png");
+		}
+		else {
+			presidentHand0.attr("src","img/fascist_policy_card.png");
+		}
+
+		if(msg.hand[1] == LIBERAL) {
+			presidentHand1.attr("src","img/liberal_policy_card.png");
+		}
+		else {
+			presidentHand1.attr("src","img/fascist_policy_card.png");
+		}
+
+		if(msg.hand[2] == LIBERAL) {
+			presidentHand2.attr("src","img/liberal_policy_card.png");
+		}
+		else {
+			presidentHand2.attr("src","img/fascist_policy_card.png");
+		}
+		delayDisplay(policyPeekCard);
+	}
 
 	socket.on(chancellorPolicyHandMsg, function(msg) {
 		if(msg.hand[0] == LIBERAL) {
