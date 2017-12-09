@@ -318,24 +318,32 @@ $().ready(function () {
 		if (msg.cause == HITLER_ELECTED) {
 			text += "Hitler was elected chancellor."
 			endMsg.text(text);
+			console.log(text);
+			console.log(endMsg.text);
 			gameScreen.hide();
 			fasWin.show();
 		}
 		else if (msg.cause == FASCIST_POLICIES) {
 			text += "6 Fascist policied were played."
 			endMsg.text(text);
+			console.log(text);
+			console.log(endMsg.text);
 			gameScreen.hide();
 			fasWin.show();
 		}
 		else if (msg.cause == LIBERAL_POLICIES) {
 			text += "5 Liberal policied were played."
 			endMsg.text(text);
+			console.log(text);
+			console.log(endMsg.text);
 			gameScreen.hide();
 			libWin.show();
 		}
 		else {
 			text += "Hitler was assasinated!"
 			endMsg.text(text);
+			console.log(text);
+			console.log(endMsg.text);
 			gameScreen.hide();
 			libWin.show();
 		}
