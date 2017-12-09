@@ -190,7 +190,7 @@ $().ready(function () {
 		playerID = msg.id;
 		players = msg.players;
 
-		roleImgFilepath = 'img/president_card.png'; // Weird filename, actually hitler card - should be fuhrer_card.png if anything
+		roleImgFilepath = "";
 		if (msg.role == FASCIST_ROLE) {
 			roleImgFilepath = 'img/fascist_card.png';
 			playerRole = FASCIST_ROLE;
@@ -206,6 +206,10 @@ $().ready(function () {
 		else if (msg.role == LIBERAL_ROLE) {
 			roleImgFilepath = 'img/liberal_card.png';
 			playerRole = LIBERAL_ROLE;
+		}
+		else
+		{
+			roleImgFilepath = 'img/president_card.png'; // Weird filename, actually hitler card - should be fuhrer_card.png if anything
 		}
 		$('#card-img').attr('src', roleImgFilepath);
 		$("#show-role-card").attr('src', roleImgFilepath);
