@@ -3,10 +3,15 @@ html * {
 	font-weight: bold;
 	color: #363636;
 	background-color: #fdfdfd;
+
+}
+
+p *{
+	font-size: 16px;
 }
 
 #hitler-logo {
-	width: 500px;
+	width: 300px;
 }
 
 .btn-primary {
@@ -20,301 +25,18 @@ html * {
 	border-color: black;
 }
 
-#start-game-btn {
-	background-color: #363636;
-	color: white;
+#navBar{
+	font-size: 20px;
 }
 
-#join-game-btn {
-	font-family: 'Spectral SC', serif !important;
+.tab{
+	font-size: 16px;
 }
 
-#game-screen-logo {
-	width: 150px;
-	height: 113px;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
+#startGame{
+	width: 85%;
 }
 
-.board-img {
-	width: 100%;
-	position: relative;
-}
-
-#notification {
-	position: absolute;
-	top: 33%;
-	width: 40%;
-	left: 29.7%;
-	padding-bottom: 20px;
-	border: solid;
-}
-
-.notification-title {
-	text-align: center;
-}
-
-#notification-x {
-	position: absolute;
-	top: 0.5px;
-	right: 0.5px;
-	height: 20px;
-	width: 20px;
-}
-
-.vote_img {
-	-ms-transform: rotate(90deg); /* IE 9 */
-	-webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
- 	transform: rotate(90deg);
- 	width: 75%;
- 	border: solid;
-	/*height: 250px;*/
-    /*height: 357px;
-    width: 250px;*/
-}
-
-#vote-card {
-	/*width: 700px;
-	position: fixed;
-	top: 30%;
-	left: 50%;
-	margin-left: -350px;*/
-	z-index: 1;
-	width: 55%;
-	position: absolute;
-	top: 33%;
-	left: 22.5%;
-	/*margin-left: -300px;*/
-	border: solid;
-}
-
-#policy-card {
-	width: 52.7%;
-	height: 325px;
-	position: absolute;
-	top: 33%;
-	left: 23.6%;
-	/*margin-left: -300px;*/
-	border: solid;
-}
-
-.policy_card_img {
-	/*width: 150px;*/
-	width: 100%;
-	margin-bottom: 20px;
-	border: solid;
-}
-
-#discard-policy-card{
-	width: 55%;
-	height: 325px;
-	border: solid;
-	position: absolute;
-	top: 33%;
-	left: 22.6%;
-	/*margin-left: -350px;*/
-}
-
-#policy-peek-card{
-	width: 55%;
-	height: 325px;
-	border: solid;
-	position: absolute;
-	top: 33%;
-	left: 22.6%;
-}
-
-#column-spacing {
-	margin-left: 25px;
-	margin-right: 25px;
-}
-
-#select-player-card {
-	width: 45%;
-	height: 250px;
-	position: absolute;
-	top: 33%;
-	left: 27.4%;
-	/*margin-left: -250px;*/
-	border: solid;
-}
-
-#player-title {
-	padding-top: 30px;
-	padding-bottom: 15px;
-}
-
-#title_row {
-	padding-top: 30px;
-	padding-bottom: 5px;
-}
-
-#player-assignment {
-	position: absolute;
-	top: 33%;
-	left: 37.4%;
-	/*margin-left: -151.5px;*/
-	width: 25%;
-	padding-bottom: 1%;
-	border: solid;
-}
-
-#card-img {
-	width: 95%;
-	margin-bottom: 1%;
-	margin-top: 1%;
-	/*height: 402px;*/
-}
-
-#elect_title {
-	text-align: center;
-}
-
-#remove-x {
-	position: absolute;
-	top: 0.5px;
-	right: 0.5px;
-	height: 20px;
-	width: 20px;
-}
-
-#select-player-btn {
-	margin-top: 7%;
-}
-
-#player-title {
-	text-align: center;
-}
-
-.lib-policy-card {
-	position: absolute;
-	width: 11.75%;
-	/*top: 288px;*/
-	top: 61.6%;
-}
-
-#lib-policy-card-1 {
-	/*left: 122px;*/
-	left: 16.2%;
-	display: none;
-}
-
-#lib-policy-card-2 {
-	/*left: 228px;*/
-	left: 30.1%;
-	display: none;
-}
-
-#lib-policy-card-3 {
-	/*left: 335px;*/
-	left: 44.2%;
-	display: none;
-}
-
-#lib-policy-card-4 {
-	/*left: 442px;*/
-	left: 58.1%;
-	display: none;
-}
-
-#lib-policy-card-5 {
-	/*left: 549px;*/
-	left: 72.2%;
-	display: none;
-}
-
-.fas-policy-card {
-	position: absolute;
-	width: 11.75%;
-	/*top: 54px;*/
-	top: 11.52%;
-}
-
-#fas-policy-card-1 {
-	/*left: 69px;*/
-	left: 9.1%;
-	display: none;
-}
-
-#fas-policy-card-2 {
-	/*left: 176px;*/
-	left: 23.2%;
-	display: none;
-}
-
-#fas-policy-card-3 {
-	/*left: 283px;*/
-	left: 37.3%;
-	display: none;
-}
-
-#fas-policy-card-4 {
-	/*left: 390px;*/
-	left: 51.3%;
-	display: none;
-}
-
-#fas-policy-card-5 {
-	/*left: 497px;*/
-	left: 65.4%;
-	display: none;
-}
-
-#fas-policy-card-6 {
-	/*left: 603px;*/
-	left: 79.4%;
-	display: none;
-}
-
-#show-role-btn {
-	position: fixed;
-	top: 3%;
-	left: 3%;
-	z-index: 5;
-}
-
-#show-role-card {
-	position: fixed;
-	top: 3%;
-	left: 3%;
-	width: 15%;
-	z-index: 1;
-}
-
-#hide-role {
-	position: fixed;
-	top: 3%;
-	width: 1.5%;
-	left: 16.5%;
-	z-index: 2;
-}
-
-#other-fascists {
-	margin-left: .1%;
-}
-
-#lib-end {
-	position: relative;
-	width: 100%;
-}
-
-#end-container {
-	position: relative;
-	width: 100%;
-}
-
-#game-over-text-1 {
-	position: relative;
-	top: 24%;
-}
-
-#game-over-text-2 {
-	position: relative;
-	top: 90%;
-}
-
-#game-over-img {
-	position: relative;
-	height: 100%;
+#emptyBoard{
+	width: 85%;
 }
