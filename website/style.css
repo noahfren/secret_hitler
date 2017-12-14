@@ -11,6 +11,7 @@ p *{
 }
 
 #hitler-logo {
+	margin-top: 10px;
 	width: 300px;
 }
 
@@ -34,9 +35,54 @@ p *{
 }
 
 #startGame{
+	margin-top: 50px;
 	width: 85%;
 }
 
 #emptyBoard{
 	width: 85%;
+}
+
+#hitlerCard{
+	width: 75%
+}
+
+#fascistCard{
+	width: 75%;
+	margin-top: 20px;
+}
+
+#liberalCard{
+	margin-top: 20px;
+	width: 80%;
+}
+
+#pickChance{
+	width: 75%;
+}
+
+#policyDiscard{
+	width: 75%;
+}
+
+#pickPolicy{
+	width: 50%;
+	margin-bottom: 20px;
+}
+
+#fullBoard{
+	width: 85%;
+}
+
+#endFas{
+	width: 130%;
+}
+
+#endLib{
+	width: 130%;
+}
+
+.column{
+	float: left;
+	width: 40%;
 }
