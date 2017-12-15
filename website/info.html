@@ -28,9 +28,9 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-item nav-link" href="#intro">Introduction</a>
+            <a class="nav-item nav-link" href="#about">About</a>
             <a class="nav-item nav-link" href="#getStarted">Getting Started</a>
             <a class="nav-item nav-link" href="#playIt">Playing the Game</a>
-            <a class="nav-item nav-link" href="#about">About</a>
           </div>
         </div>
       </nav>
@@ -40,33 +40,39 @@
         <p>Secret Hitler is strategy game for 5+ players. Players are randomly divided into two teams: the liberals and the facists. The purpose of the game is to play as many policy cards until your team wins or find and execute the Secret Hitler.</p>
       </div>
       <br>
+      <div class="row" id="about">
+        <h3>About</h3>
+        <p>The purpose of this application is to serve as a replacement for the physical game board and game pieces. This web recreation of the game allows you to play with people who are not physically present. Our aim was to recreate as much of the tabletop experience as possible (via on-screen images, cards, notifications, and action prompts) so that this can be used as a replacement if you do not have the actual game board and pieces, or if you prefer to use a computer.
+        </p>
+      </div>
+      <br>
       <div class="row" id="getStarted">
         <h3>Getting Started</h3>
         <p>Our web application starts with a start game screen, where users can input their name and choose whether they want to open a new game, or join a friend’s game using a custom game code generated for them. </p>
-        <center><img id="startGame" src="img/start_screen.png"></center>
+        <center><img class="game-img" id="startGame" src="img/start_screen.png"></center>
       </div>
       <div class="row" id="playIt">
         <h3>Playing the Game</h3>
         <p>After enough players have joined the creator of the game will click a start game button. All players will be brought to this empty board view.</p>
-        <center><img id="emptyBoard" src="img/empty_board.png"></center>
+        <center><img class="game-img" id="emptyBoard" src="img/empty_board.png"></center>
 
         <p>At the start of the game you will be assigned a specific role: Liberal, Fascist, or Hitler. Here are screenshots of how each player is notified about there role.</p>
 
-        <center><img id="hitlerCard" src="img/hitler_card.png"></center>
-        <center><img id="fascistCard" src="img/Fas_card.png"></center>
-        <center><img id="liberalCard" src="img/lib_role.png"></center>
+        <center><img class="game-img" id="hitlerCard" src="img/hitler_card.png"></center>
+        <center><img class="game-img" id="fascistCard" src="img/Fas_card.png"></center>
+        <center><img class="game-img" id="liberalCard" src="img/lib_role.png"></center>
 
         <p>The president will nominate a chancellor and then all players will vote "yes" or "no" to elect the chancellor.</p>
-        <center><img id="pickChance" src="img/vote_chanc.png"></center>
+        <center><img class="game-img" id="pickChance" src="img/vote_chanc.png"></center>
 
         <p>Once a chancellor is elected then the current president will be asked to discard one of the top three policy cards.</p>
-        <center><img id="policyDiscard" src="img/policy_discard.png"></center>
+        <center><img class="game-img" id="policyDiscard" src="img/policy_discard.png"></center>
 
         <p>The chancellor will then be given the two policy cards that were not discarded by the president.</p>
-        <center><img id="pickPolicy" src="img/pick a policy.png"></center>
+        <center><img class="game-img" id="pickPolicy" src="img/pick a policy.png"></center>
 
         <p>After many rounds of playing policy cards this is what a semi-full board would look like.</p>
-        <center><img id="fullBoard" src="img/full_board.png"></center>
+        <center><img class="game-img" id="fullBoard" src="img/full_board.png"></center>
 
         <p>The end game screen can be seen below. This screen is accompained by some music.</p>
         <div class="row">
@@ -77,12 +83,6 @@
             <center><img id="endLib" src="img/lib_win.png"></center>
           </div>
         </div>
-      </div>
-      <br>
-      <div class="row" id="about">
-        <h3>About</h3>
-        <p>The purpose of this application is to serve as a replacement for the physical game board and game pieces. This web recreation of the game allows you to play with people who are not physically present. Our aim was to recreate as much of the tabletop experience as possible (via on-screen images, cards, notifications, and action prompts) so that this can be used as a replacement if you do not have the actual game board and pieces, or if you prefer to use a computer.
-        </p>
       </div>
       <br>
 
